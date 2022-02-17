@@ -1,3 +1,6 @@
 /lista1/src/imagedock/
-.idea/
-out/
+**/.idea
+**/out
+Dockerfile
+*.iml
+
