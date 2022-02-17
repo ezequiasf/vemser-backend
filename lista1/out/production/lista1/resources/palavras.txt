@@ -1,0 +1,5 @@
+Cachorro,Dog
+Tempo,Time
+Amor,Love
+Cidade,City
+Feliz,Happy
