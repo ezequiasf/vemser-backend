@@ -28,6 +28,7 @@ public class Exercicio6 {
         }else{
             System.out.println("Resposta inválida.");
         }
+        sc.close();
     }
 
     private static void tradutor(String palavra, int index) {

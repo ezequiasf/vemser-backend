@@ -22,5 +22,6 @@ public class Exercicio5 {
         double salarioBruto = (valorHora*horaTrabalhada)+(horaExtraCinquenta*valorHora*1.5)
                 +(horaExtraCem*valorHora*2);
         System.out.printf("O Salário bruto é:R$ %.2f",salarioBruto);
+        sc.close();
     }
 }

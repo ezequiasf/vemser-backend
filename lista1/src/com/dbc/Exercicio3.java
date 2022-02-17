@@ -17,7 +17,8 @@ public class Exercicio3 {
             System.out.println("o valor pago" +
                     " deve ser maior ou igual ao valor consumido.");
         }else{
-            System.out.printf("O valor do troco é:%.2f", valorPago-valorConsumido);
+            System.out.printf("O valor do troco é:R$ %.2f%n", valorPago-valorConsumido);
         }
+        sc.close();
     }
 }

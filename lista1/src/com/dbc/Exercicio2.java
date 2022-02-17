@@ -14,7 +14,7 @@ public class Exercicio2 {
             total += sc.nextFloat();
         }
         media = total/4;
-        System.out.println("Sua média foi:"+media);
+        System.out.printf("Sua média foi:%.2f%n",media);
         if (media<5){
             System.out.println("Reprovado.");
         }else if (media>=5.1f && media<=6.9f){
@@ -22,5 +22,6 @@ public class Exercicio2 {
         }else{
             System.out.println("Aprovado.");
         }
+        sc.close();
     }
 }

@@ -35,5 +35,6 @@ public class Exercicio4 {
         String[] infoExplodida = info.split("\\*");
         System.out.printf("Informações:%nPopulação=%s;%nFesta:%s;%n" +
                 "PIB:%s;%n",infoExplodida[0],infoExplodida[1],infoExplodida[2]);
+        sc.close();
     }
 }

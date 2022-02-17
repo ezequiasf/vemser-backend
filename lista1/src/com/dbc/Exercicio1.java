@@ -21,6 +21,7 @@ public class Exercicio1 {
         String estado = sc.nextLine();
 
         System.out.printf("Olá seu nome é %s, você tem %d anos, é da cidade de " +
-                "%s, situada no estado de %s.", nome, idade, cidade, estado);
+                "%s, situada no estado de %s.%n", nome, idade, cidade, estado);
+        sc.close();
     }
 }
