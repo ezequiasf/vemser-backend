@@ -1,0 +1,6 @@
+/src/imagedock/
+/.idea
+/out
+Dockerfile
+*.iml
+
