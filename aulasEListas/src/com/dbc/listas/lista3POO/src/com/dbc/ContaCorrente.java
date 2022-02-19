@@ -19,13 +19,13 @@ public class ContaCorrente {
 
     public void imprimirContaCorrente ()
     {
-        System.out.printf("%nCliente: %s | Número da conta: %s | Agência: %d%nSaldo: R$ %.3f | Cheque Especial: R$ %.3f%n" +
+        System.out.printf("%nCliente: %s | Número da conta: %s | Agência: %d%nSaldo: R$ %.2f | Cheque Especial: R$ %.2f%n" +
                 "", this.cliente.nome,this.numeroConta,this.agencia,this.saldo,this.chequeEspecial);
     }
     public boolean sacar (double valor)
     {
         double valorEmConta = this.saldo+this.chequeEspecial;
-        if (valor <= valorEmConta)
+        if ((valor <= valorEmConta)&&(valor>0))
         {
             double diferencaSaldoValor = this.saldo-valor;
             if (diferencaSaldoValor >= 0){
@@ -59,7 +59,7 @@ public class ContaCorrente {
     public boolean transferir (ContaCorrente contaCorrente, double valor)
     {
         double valorEmConta = this.saldo+this.chequeEspecial;
-        if (valor <= valorEmConta)
+        if ((valor <= valorEmConta)&&(valor>0))
         {
             double diferencaSaldoValor = this.saldo-valor;
             if (diferencaSaldoValor >= 0){

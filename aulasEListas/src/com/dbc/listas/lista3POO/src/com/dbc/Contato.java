@@ -16,7 +16,7 @@ public class Contato {
     public void imprimirContato ()
     {
         String tipoNome = (tipo==1)? "Residencial":"Comercial";
-        System.out.printf("Descrição:%s%n" +
-                "Telefone:%s%nTipo:%s%n", this.descricao,this.telefone, this.tipo);
+        System.out.printf("Descrição: %s%n" +
+                "Telefone: %s%nTipo de contato: %s%n", this.descricao,this.telefone, tipoNome);
     }
 }

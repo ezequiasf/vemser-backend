@@ -26,8 +26,8 @@ public class Endereco {
     public void imprimirEndereco()
     {
         String tipoNome = (tipo==1)? "Residencial":"Comercial";
-        System.out.printf("Tipo:%s%n%s," +
-                "%d,%s,%s,%s", tipoNome,logradouro,numero, cidade,estado,pais);
+        System.out.printf("Tipo de endereço: %s%n%s," +
+                "%d,%s,%s,%s.", tipoNome,logradouro,numero, cidade,estado,pais);
     }
 
 }

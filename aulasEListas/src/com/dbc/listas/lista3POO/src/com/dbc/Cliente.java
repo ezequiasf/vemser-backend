@@ -17,18 +17,25 @@ public class Cliente {
 
     public void imprimirContatos ()
     {
-        for (Contato contato:contatos)
-            contato.imprimirContato();
+        for (int i=0; i<contatos.length;i++){
+            if (contatos[i]!=null){
+                contatos[i].imprimirContato();
+            }
+        }
+
     }
 
     public void imprimirEnderecos ()
     {
-        for (Endereco endereco:enderecos)
-            endereco.imprimirEndereco();
+        for (int i=0; i<enderecos.length;i++){
+            if (enderecos[i]!=null){
+                enderecos[i].imprimirEndereco();
+            }
+        }
     }
 
     public void imprimirCliente ()
     {
-        System.out.printf("Nome:%s%nCpf:%s%n",this.nome, this.cpf);
+        System.out.printf("Nome: %s%nCpf: %s%n",this.nome, this.cpf);
     }
 }
