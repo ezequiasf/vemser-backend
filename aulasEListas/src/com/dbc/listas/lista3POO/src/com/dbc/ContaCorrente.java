@@ -24,16 +24,18 @@ public class ContaCorrente {
     }
     public boolean sacar (double valor)
     {
-        if (valor <= (this.saldo+this.chequeEspecial))
+        double valorEmConta = this.saldo+this.chequeEspecial;
+        if (valor <= valorEmConta)
         {
-            double diferenca = this.saldo-valor;
-            if (diferenca > 0){
-                this.saldo -=valor;
+            double diferencaSaldoValor = this.saldo-valor;
+            if (diferencaSaldoValor >= 0){
+                this.saldo -= valor;
             }else{
-                if (valor>chequeEspecial) {
+                if (!(diferencaSaldoValor <= chequeEspecial)) {
                     return false;
                 }
-                this.chequeEspecial -=valor;
+                this.saldo = 0;
+                this.chequeEspecial-= Math.abs(diferencaSaldoValor);
             }
             return true;
         }
@@ -56,12 +58,23 @@ public class ContaCorrente {
 
     public boolean transferir (ContaCorrente contaCorrente, double valor)
     {
-        if (valor>saldo){
-            return false;
+        double valorEmConta = this.saldo+this.chequeEspecial;
+        if (valor <= valorEmConta)
+        {
+            double diferencaSaldoValor = this.saldo-valor;
+            if (diferencaSaldoValor >= 0){
+                this.saldo -= valor;
+            }else{
+                if (!(diferencaSaldoValor <= chequeEspecial)) {
+                    return false;
+                }
+                this.saldo = 0;
+                this.chequeEspecial-= Math.abs(diferencaSaldoValor);
+            }
+            contaCorrente.saldo += valor;
+            return true;
         }
-        saldo -=valor;
-        contaCorrente.saldo +=valor;
-        return true;
+        return false;
     }
 
 }
