@@ -1,6 +1,6 @@
 package com.dbc.listas.lista1.src.com.dbc;
 
-import utils.Leitor;
+import com.dbc.listas.lista1.src.utils.Leitor;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ public class Exercicio4 {
         int indexPonto = 0;
         String escolhaEstado = "Escolha de qual estado você quer informações:\n";
         String escolhaCidade = "Agora escolha a cidade:\n";
-        List<String[]> estadoCidade = Leitor.leitorArquivos("src/resources/estados.txt");
+        List<String[]> estadoCidade = Leitor.leitorArquivos("src/com/dbc/listas/lista1/src/resources/estados.txt");
 
         System.out.println("Informação sobre estados");
         for (String[] arr: estadoCidade){

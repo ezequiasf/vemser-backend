@@ -1,13 +1,13 @@
 package com.dbc.listas.lista1.src.com.dbc;
 
-import utils.Leitor;
+import com.dbc.listas.lista1.src.utils.Leitor;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Exercicio6 {
 
-    static List<String[]> palavraLista = Leitor.leitorArquivos("src/resources/palavras.txt");
+    static List<String[]> palavraLista = Leitor.leitorArquivos("src/com/dbc/listas/lista1/src/resources/palavras.txt");
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

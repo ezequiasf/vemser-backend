@@ -1,8 +1,5 @@
 package com.dbc.listas.lista3POO.src.com.dbc;
 
-import com.dbc.Contato;
-import com.dbc.Endereco;
-
 public class Cliente {
 
     public Cliente(String nome, String cpf, Contato[] contatos, Endereco[] enderecos)
