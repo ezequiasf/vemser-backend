@@ -89,5 +89,19 @@ public class Main {
         //Adicionar mais 100 para começar a adicionar no saldo
         contaCliente1.depositar(100);
         contaCliente1.imprimirContaCorrente();
+
+        //Testando a nova lógica de transferencia mais uma vez.
+        contaCliente1.depositar(100);
+        System.out.println("Antes da transferencia");
+        contaCliente1.imprimirContaCorrente();
+        contaCliente2.imprimirContaCorrente();
+        boolean transferiu = contaCliente1.transferir(contaCliente2, 380.76);
+        System.out.println("Depois da transferencia");
+        contaCliente1.imprimirContaCorrente();
+        contaCliente2.imprimirContaCorrente();
+
+        //Deposito cliente 1
+        contaCliente1.depositar(260);
+        contaCliente1.imprimirContaCorrente();
     }
 }

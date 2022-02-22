@@ -73,7 +73,7 @@ public abstract class Conta implements Movimentacao {
     @Override
     public String toString() {
         return "Conta{" +
-                "cliente=" + cliente +
+                "cliente=" + cliente.getNome() +
                 ", numeroConta='" + numeroConta + '\'' +
                 ", agencia='" + agencia + '\'' +
                 ", saldo=" + saldo +
