@@ -9,7 +9,7 @@ public class ContaPoupanca extends Conta implements Impressao{
     }
 
     public void creditarTaxa (){
-        setSaldo(getSaldo()+JUROS_MENSAL*getSaldo());
+        setSaldo(JUROS_MENSAL*getSaldo());
     }
 
     @Override
