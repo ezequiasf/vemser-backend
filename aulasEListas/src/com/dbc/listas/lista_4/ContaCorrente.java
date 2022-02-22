@@ -3,10 +3,12 @@ package com.dbc.listas.lista_4;
 public class ContaCorrente extends Conta implements Impressao{
 
     private double chequeEspecial;
+    private final double chequeEspecialReferencia;
 
     public ContaCorrente(Cliente cliente, String numeroConta, String agencia, double saldo, double chequeEspecial) {
         super(cliente, numeroConta, agencia, saldo);
         this.chequeEspecial = chequeEspecial;
+        chequeEspecialReferencia = chequeEspecial;
     }
 
     public double retornarSaldoComChequeEspecial (){
@@ -35,6 +37,24 @@ public class ContaCorrente extends Conta implements Impressao{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean depositar (double valor){
+        if (valor<=0){
+            return false;
+        }
+
+        if (chequeEspecial < chequeEspecialReferencia){
+            chequeEspecial += valor;
+            if (chequeEspecial> chequeEspecialReferencia){
+                setSaldo(getSaldo()+(chequeEspecial-chequeEspecialReferencia));
+                chequeEspecial = chequeEspecialReferencia;
+            }
+        }else{
+            setSaldo(getSaldo()+valor);
+        }
+        return true;
     }
 
     @Override

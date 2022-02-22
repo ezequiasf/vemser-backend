@@ -17,15 +17,15 @@ public class Main {
         ContaCorrente contaCliente1 = new ContaCorrente(cliente1,"87463458","3456-1",1500.00,250.0);
         ContaPoupanca contaPoup1 = new ContaPoupanca(cliente1,"834237","7382463",350);
         //Operações de contato
-        c1Cliente1.imprimirContato();
+     //   c1Cliente1.imprimirContato();
 
         //Operações de endereço
-        e1Cliente1.imprimirEndereco();
+       // e1Cliente1.imprimirEndereco();
 
         //Operações de cliente
-        cliente1.imprimirCliente();
-        cliente1.imprimirContatos();
-        cliente1.imprimirEnderecos();
+       // cliente1.imprimirCliente();
+       // cliente1.imprimirContatos();
+        //cliente1.imprimirEnderecos();
 
         //Operações de conta
         contaCliente1.imprimir();
@@ -50,5 +50,9 @@ public class Main {
         contaPoup1.creditarTaxa();
         contaPoup1.imprimir();
 
+        //Depositando
+        contaCliente1.imprimir();
+        contaCliente1.depositar(1000);
+        contaCliente1.imprimir();
     }
 }

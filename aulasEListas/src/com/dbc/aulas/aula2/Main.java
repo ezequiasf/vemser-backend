@@ -5,8 +5,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    static Scanner sc = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        exercicio4();
+    }
+
+    public static void exercicio1 (){
         //Exercício 1
         int[] valores = {1, 2, 3};
         int total = 0;
@@ -15,7 +20,9 @@ public class Main {
         }
         System.out.println("Soma:" + total);
         System.out.println("Média:" + (double) total / 3);
+    }
 
+    public static void exercicio2 (){
         //Exercicio 2
         Random rd = new Random();
         int[][] valoresRandom = {{rd.nextInt(100), rd.nextInt(100)}, {rd.nextInt(100), rd.nextInt(100)}};
@@ -35,10 +42,10 @@ public class Main {
         }
         System.out.printf("Soma total:%d%nSoma primeira linha:%d%n" +
                 "Soma segunda linha:%d%nDiferença:%d%n",soma, primeiraLinha,segundaLInha,segundaLInha-primeiraLinha);
+    }
 
-
+    public static void exercicio3 (){
         //Exercicio 3
-        Scanner sc = new Scanner(System.in);
         System.out.println("Quantos números você quer?");
         int [] numeros = new int[sc.nextInt()];
         int totalNumeros = 0;
@@ -49,12 +56,14 @@ public class Main {
             totalNumeros +=numeros[i];
         }
         System.out.printf("A média é:%.2f%n",(double)totalNumeros/numeros.length);
+    }
 
+    public static void exercicio4 (){
         //Exercício 4
-        String resposta = "";
-       do{
-           System.out.println("Digite uma palavra: Para desligar digite [sair]");
-           resposta = sc.nextLine();
-       }while (!resposta.equalsIgnoreCase("sair"));
+        String resposta;
+        do{
+            System.out.println("Digite uma palavra: Para desligar digite [sair]");
+            resposta = sc.nextLine();
+        }while (!resposta.equalsIgnoreCase("sair"));
     }
 }

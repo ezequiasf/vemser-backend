@@ -3,7 +3,6 @@ package com.dbc.aulas.aula4;
 public class Main {
 
     public static void main(String[] args) {
-
         Pessoa pessoa1 = new Pessoa("Ezequias", "Barros", 25, 82436876);
         Pessoa pessoa2 = new Pessoa("Carlos", "Junior", 20, 36724537);
 

@@ -4,8 +4,8 @@ public class Cliente {
 
     private String nome;
     private String cpf;
-    private Contato[] contatos = new Contato[2];
-    private Endereco[] enderecos = new Endereco[2];
+    private Contato[] contatos;
+    private Endereco[] enderecos;
 
     public Cliente(String nome, String cpf, Contato[] contatos, Endereco[] enderecos)
     {
