@@ -1,4 +1,4 @@
-package com.dbc.aulas.aula4;
+package com.dbc.modulo_1.aulas.aula4;
 
 public class Pessoa {
 

@@ -1,4 +1,4 @@
-package com.dbc.aulas.aula2;
+package com.dbc.modulo_1.aulas.aula2;
 
 import java.util.Random;
 import java.util.Scanner;

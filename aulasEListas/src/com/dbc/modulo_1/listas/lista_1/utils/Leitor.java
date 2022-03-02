@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_1.utils;
+package com.dbc.modulo_1.listas.lista_1.utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

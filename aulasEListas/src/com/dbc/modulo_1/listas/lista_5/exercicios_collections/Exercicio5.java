@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_5.exercicios_collections;
+package com.dbc.modulo_1.listas.lista_5.exercicios_collections;
 
 import java.util.*;
 

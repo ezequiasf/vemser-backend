@@ -1,4 +1,4 @@
-package com.dbc.aulas.aula6;
+package com.dbc.modulo_1.aulas.aula6;
 
 import java.util.function.Function;
 

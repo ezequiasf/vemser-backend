@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_1.exercises;
+package com.dbc.modulo_1.listas.lista_1.exercises;
 
 import java.util.Scanner;
 

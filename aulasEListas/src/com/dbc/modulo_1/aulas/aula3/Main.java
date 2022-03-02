@@ -1,4 +1,4 @@
-package com.dbc.aulas.aula3;
+package com.dbc.modulo_1.aulas.aula3;
 
 public class Main {
 

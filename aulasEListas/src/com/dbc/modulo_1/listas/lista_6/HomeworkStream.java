@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_6;
+package com.dbc.modulo_1.listas.lista_6;
 
 import java.util.ArrayList;
 import java.util.Comparator;
