@@ -1,0 +1,3 @@
+pernambuco,recife:{1 661 017 hab.*são joão*R$ 51 859 618 mil},olinda:{393 115 hab.*carnaval*R$ 5 533 876 47 mil}
+rio grande do sul,porto alegre:{1 492 530 hab.*Festa do Carneiro no Buraco*R$ 477.68 milhões},gramado:{36.555 hab.*Festa da Colônia*R$ 1 540 150 717}
+santa catarina,florianopolis:{508.826 hab.*Oktobertanz*R$ 18 636 407 20 mil},blumenau:{361 855 hab.*Sommerfest*R$ 16 000 000 mil}
