@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_2;
+package com.dbc.modulo_1.listas.lista_2;
 
 import java.util.Scanner;
 

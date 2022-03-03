@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_3;
+package com.dbc.modulo_1.listas.lista_3;
 
 public class Cliente {
 

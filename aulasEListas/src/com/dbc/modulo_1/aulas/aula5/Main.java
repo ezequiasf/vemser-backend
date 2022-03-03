@@ -1,6 +1,6 @@
-package com.dbc.aulas.aula5;
+package com.dbc.modulo_1.aulas.aula5;
 
-import com.dbc.aulas.aula5.exercicioSobrescricao.*;
+import com.dbc.modulo_1.aulas.aula5.exercicioSobrescricao.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

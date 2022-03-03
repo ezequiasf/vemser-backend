@@ -1,4 +1,4 @@
-package com.dbc.listas.lista_5.exercicio_poo;
+package com.dbc.modulo_1.listas.lista_5.exercicio_poo;
 
 public class ContaPagamento extends Conta implements Impressao{
 

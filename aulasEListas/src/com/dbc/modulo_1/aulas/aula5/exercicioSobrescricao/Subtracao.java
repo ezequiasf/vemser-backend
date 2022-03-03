@@ -1,4 +1,4 @@
-package com.dbc.aulas.aula5.exercicioSobrescricao;
+package com.dbc.modulo_1.aulas.aula5.exercicioSobrescricao;
 
 public class Subtracao implements OperacaoMatematica{
     @Override

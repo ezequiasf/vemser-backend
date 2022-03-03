@@ -1,6 +1,6 @@
-package com.dbc.listas.lista_1.exercises;
+package com.dbc.modulo_1.listas.lista_1.exercises;
 
-import com.dbc.listas.lista_1.utils.Leitor;
+import com.dbc.modulo_1.listas.lista_1.utils.Leitor;
 
 import java.util.List;
 import java.util.Scanner;
