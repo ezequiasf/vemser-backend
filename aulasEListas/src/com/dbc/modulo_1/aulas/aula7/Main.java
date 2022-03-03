@@ -1,4 +1,4 @@
-package com.dbc.modulo_1.aulas.aula7;
+package com.dbc.aulas.aula7;
 
 import java.util.Scanner;
 
