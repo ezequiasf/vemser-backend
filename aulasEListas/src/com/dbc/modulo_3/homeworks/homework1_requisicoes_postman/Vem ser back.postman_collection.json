@@ -83,7 +83,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"address\": {\n        \"street\": \"Kulas Light\",\n        \"suite\": \"Apt. 556\",\n        \"city\": \"Gwenborough\",\n        \"zipcode\": \"92998-3874\",\n        \"geo\": {\n            \"lat\": \"-37.3159\",\n            \"lng\": \"81.1496\"\n        }\n    },\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\",\n    \"company\": {\n        \"name\": \"Romaguera-Crona\",\n        \"catchPhrase\": \"Multi-layered client-server neural-net\",\n        \"bs\": \"harness real-time e-markets\"\n    }\n}",
+											"raw": "{\n    \"id\": \"\",\n    \"name\": \"Leanne Graham\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"address\": {\n        \"street\": \"Kulas Light\",\n        \"suite\": \"Apt. 556\",\n        \"city\": \"Gwenborough\",\n        \"zipcode\": \"92998-3874\",\n        \"geo\": {\n            \"lat\": \"-37.3159\",\n            \"lng\": \"81.1496\"\n        }\n    },\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\",\n    \"company\": {\n        \"name\": \"Romaguera-Crona\",\n        \"catchPhrase\": \"Multi-layered client-server neural-net\",\n        \"bs\": \"harness real-time e-markets\"\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -112,7 +112,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"address\": {\n        \"street\": \"Kulas Light\",\n        \"suite\": \"Apt. 556\",\n        \"city\": \"Gwenborough\",\n        \"zipcode\": \"92998-3874\",\n        \"geo\": {\n            \"lat\": \"-37.3159\",\n            \"lng\": \"81.1496\"\n        }\n    },\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\",\n    \"company\": {\n        \"name\": \"Romaguera-Crona\",\n        \"catchPhrase\": \"Multi-layered client-server neural-net\",\n        \"bs\": \"harness real-time e-markets\"\n    }\n}",
+											"raw": "{\n    \"name\": \"Ezequias Ferreira\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"address\": {\n        \"street\": \"Kulas Light\",\n        \"suite\": \"Apt. 556\",\n        \"city\": \"Gwenborough\",\n        \"zipcode\": \"92998-3874\",\n        \"geo\": {\n            \"lat\": \"-37.3159\",\n            \"lng\": \"81.1496\"\n        }\n    },\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\",\n    \"company\": {\n        \"name\": \"Romaguera-Crona\",\n        \"catchPhrase\": \"Multi-layered client-server neural-net\",\n        \"bs\": \"harness real-time e-markets\"\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -188,7 +188,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 1,\n        \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n        \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n        \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -217,7 +217,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 1,\n        \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n        \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"disdusdiuasduiasdyasidyaiaecati excepturi optio reprehenderit\",\n        \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -293,7 +293,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"postId\": 1,\n        \"id\": 1,\n        \"name\": \"id labore ex et quam laborum\",\n        \"email\": \"Eliseo@gardner.biz\",\n        \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\n    }",
+											"raw": "    {\n        \"postId\": 1,\n        \"id\": \"\",\n        \"name\": \"Comentário DBC\",\n        \"email\": \"Eliseo@gardner.biz\",\n        \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -324,7 +324,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n        \"postId\": 1,\n        \"id\": 2,\n        \"name\": \"quo vero reiciendis velit similique earum\",\n        \"email\": \"Jayne_Kuhic@sydney.com\",\n        \"body\": \"est natus enim nihil est dolore omnis voluptatem numquam\\net omnis occaecati quod ullam at\\nvoluptatem error expedita pariatur\\nnihil sint nostrum voluptatem reiciendis et\"\n    }",
+											"raw": "{\n        \"postId\": 1,\n        \"id\": \"\",\n        \"name\": \"quo vero reicieaeeeeeeeeeeeeeeeeeeeeee\",\n        \"email\": \"Jayne_Kuhic@sydney.com\",\n        \"body\": \"est natus enim nihil est dolore omnis voluptatem numquam\\net omnis occaecati quod ullam at\\nvoluptatem error expedita pariatur\\nnihil sint nostrum voluptatem reiciendis et\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -426,7 +426,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 1,\n        \"title\": \"quidem molestiae enim\"\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"quidem molestiae enim\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -476,7 +476,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 1,\n        \"title\": \"quidem molestiae enim\"\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"quidem dagsiudshiudhasuhdsiahidashiadsuhd\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -552,7 +552,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 1,\n        \"title\": \"delectus aut autem\",\n        \"completed\": false\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"Todo cadastro\",\n        \"completed\": false\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -602,7 +602,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"userId\": 1,\n        \"id\": 2,\n        \"title\": \"quis ut nam facilis et officia qui\",\n        \"completed\": false\n    }",
+											"raw": "    {\n        \"userId\": 1,\n        \"id\": \"\",\n        \"title\": \"quis ut nam fdadsadsdasdasdicia qui\",\n        \"completed\": false\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -720,7 +720,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {    \"albumId\": 1,\n        \"id\": 1,\n        \"title\": \"accusamus beatae ad facilis cum similique qui sunt\",\n        \"url\": \"https://via.placeholder.com/600/92c952\",\n        \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n    }",
+											"raw": "    {    \"albumId\": 1,\n        \"id\": \"\",\n        \"title\": \"accusamus beatae ad facilis cum similique qui sunt\",\n        \"url\": \"https://via.placeholder.com/600/92c952\",\n        \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -749,7 +749,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "    {\n        \"albumId\": 1,\n        \"id\": 1,\n        \"title\": \"accusamus beatae ad facilis cum similique qui sunt\",\n        \"url\": \"https://via.placeholder.com/600/92c952\",\n        \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n    }",
+											"raw": "    {\n        \"albumId\": 1,\n        \"id\": \"\",\n        \"title\": \"accusamus beatae aadisudaidyiuasuydaiusydisayiduaysu cum similique qui sunt\",\n        \"url\": \"https://via.placeholder.com/600/92c952\",\n        \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -767,6 +767,243 @@
 											"path": [
 												"photos",
 												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Requisições heroku vem ser",
+					"item": [
+						{
+							"name": "Pessoa",
+							"item": [
+								{
+									"name": "cadastrarPessoa",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "    {\n        \"nome\": \"Ezequias Ferreira\",\n        \"dataNascimento\": \"1990-10-10\",\n        \"cpf\": \"12345678910\"\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/pessoa",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"pessoa"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getPessoas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/pessoa",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"pessoa"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "atualizaPessoa",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "    {\n        \"nome\": \"Algo\",\n        \"dataNascimento\": \"1990-10-10\",\n        \"cpf\": \"12345678910\"\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/pessoa/4",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"pessoa",
+												"4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "deletarPessoa",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/pessoa/6",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"pessoa",
+												"6"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Contato",
+							"item": [
+								{
+									"name": "getContato",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/contato",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"contato"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cadastrarContato",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "    {\n        \"tipoContato\": \"COMERCIAL\",\n        \"numero\": \"051998654789\",\n        \"descricao\": \"home office\"\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/contato/3",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"contato",
+												"3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "deletarContato",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/contato/11",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"contato",
+												"11"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "atualizarContato",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "    {\n        \"tipoContato\": \"COMERCIAL\",\n        \"numero\": \"051998654789\",\n        \"descricao\": \"home office\"\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/contato/2",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"contato",
+												"2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getContatoPessoaEspecifica",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://back-vemserdbc.herokuapp.com/contato/3",
+											"protocol": "https",
+											"host": [
+												"back-vemserdbc",
+												"herokuapp",
+												"com"
+											],
+											"path": [
+												"contato",
+												"3"
 											]
 										}
 									},
