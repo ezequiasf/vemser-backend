@@ -2,19 +2,36 @@ package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.entity.Pessoa;
 import com.dbccompany.vemser.repository.PessoaRepository;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PessoaService {
 
-    private final PessoaRepository pessoaRepo;
+    @Autowired
+    private PessoaRepository pessoaRepo;
 
-    public PessoaService (){
-        pessoaRepo = new PessoaRepository();
+    private boolean validacaoPessoa (Pessoa pessoa){
+        boolean condicaoNome = StringUtils.isBlank(pessoa.getNome());
+        boolean condicaoData = ObjectUtils.isEmpty(pessoa.getNascimento());
+        boolean condicaoCpf = StringUtils.isBlank(pessoa.getCpf());
+        return condicaoNome || condicaoData || condicaoCpf;
     }
 
     public Pessoa cadastrarPessoa (Pessoa pessoa){
-        return pessoaRepo.cadastrarPessoa(pessoa);
+        try{
+            if (validacaoPessoa(pessoa)){
+                throw new Exception ("Erro no cadastro!\nVerifique os campos:\nnome, cpf e data: Não podem estar vazios.");
+            }
+            return pessoaRepo.cadastrarPessoa(pessoa);
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 
     public List<Pessoa> listarPessoas (){
@@ -23,10 +40,13 @@ public class PessoaService {
 
     public Pessoa atualizarPessoa (Integer id, Pessoa pessoa){
         Pessoa p = null;
-        try {
+        try{
+            if (validacaoPessoa(pessoa)){
+                throw new Exception ("Erro na atualização!\nVerifique os campos:\nnome, cpf e data: Não podem estar vazios.");
+            }
             p = pessoaRepo.atualizarPessoa(id, pessoa);
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch (Exception e){
+            System.err.println(e.getMessage());
         }
         return p;
     }

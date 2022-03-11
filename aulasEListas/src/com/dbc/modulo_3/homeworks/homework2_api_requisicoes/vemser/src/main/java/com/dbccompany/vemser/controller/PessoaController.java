@@ -2,6 +2,10 @@ package com.dbccompany.vemser.controller;
 
 import com.dbccompany.vemser.entity.Pessoa;
 import com.dbccompany.vemser.service.PessoaService;
+import com.dbccompany.vemser.service.PropertieReader;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,10 +14,15 @@ import java.util.List;
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    private final PessoaService pessoaService;
+    @Autowired
+    private PessoaService pessoaService;
 
-    public PessoaController(){
-        pessoaService = new PessoaService();
+    @Autowired
+    private PropertieReader leitor;
+
+    @GetMapping("/ambiente")
+    public String retornaAmbiente(){
+        return "O ambiente é: "+ leitor.getAmbiente();
     }
 
     @GetMapping("/all")

@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.repository;
 
 import com.dbccompany.vemser.entity.Pessoa;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+@Repository
 public class PessoaRepository {
 
     private final List<Pessoa> pessoas = new ArrayList<>();

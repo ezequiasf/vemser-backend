@@ -2,6 +2,7 @@ package com.dbccompany.vemser.controller;
 
 import com.dbccompany.vemser.entity.Contato;
 import com.dbccompany.vemser.service.ContatoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +11,8 @@ import java.util.List;
 @RequestMapping("/contato")
 public class ContatoController {
 
-    private final ContatoService contatoService;
-
-    public ContatoController (){
-        contatoService = new ContatoService();
-    }
+    @Autowired
+    private ContatoService contatoService;
 
     @PostMapping("/cadastrar")
     public Contato cadastrarContato (@RequestBody Contato contato){

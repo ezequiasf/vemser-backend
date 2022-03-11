@@ -2,12 +2,16 @@ package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.entity.Contato;
 import com.dbccompany.vemser.repository.ContatoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ContatoService {
 
-    private final ContatoRepository contatoRepo;
+    @Autowired
+    private  ContatoRepository contatoRepo;
 
     public ContatoService (){
         this.contatoRepo = new ContatoRepository();
