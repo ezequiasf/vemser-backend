@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "14573bb0-7e0b-4cbb-8560-54fee63a3016",
+		"name": "Homework3 - Endereco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Endereco",
+			"item": [
+				{
+					"name": "todosEnderecos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/endereco/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enderecoEspecifico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/endereco/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enderecosPorPessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/endereco/1/pessoa",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								"1",
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarEndereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logradouro\": \"Rua dos bobinhos numero 0 \",\n    \"bairro\": \"Bairinho5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/endereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizarEndereco",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logradouro\":\"exemplo de rua, 32\",\n    \"bairro\":\"bairro do recife\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/endereco/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletarEndereco",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/endereco/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"endereco",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
