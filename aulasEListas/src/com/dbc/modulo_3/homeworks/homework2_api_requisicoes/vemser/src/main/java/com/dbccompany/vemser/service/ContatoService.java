@@ -21,6 +21,10 @@ public class ContatoService {
         return contatoRepo.listarContatos();
     }
 
+    public List<Contato> listarContatosPorPessoa (Integer idPessoa){
+        return contatoRepo.listarContatoPessoa(idPessoa);
+    }
+
     public Contato atualizarContato (Integer id, Contato contato){
         Contato cont = null;
         try {

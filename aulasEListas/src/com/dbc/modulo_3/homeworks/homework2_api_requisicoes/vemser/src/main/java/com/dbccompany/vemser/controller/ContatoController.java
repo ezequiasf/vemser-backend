@@ -26,6 +26,11 @@ public class ContatoController {
         return contatoService.listarContatos();
     }
 
+    @GetMapping("/pessoa/{id}")
+    public List<Contato> listarContatosPorPessoa (@PathVariable("id") Integer idPessoa){
+        return contatoService.listarContatosPorPessoa(idPessoa);
+    }
+
     @PutMapping("/{id}")
     public Contato putContato (@PathVariable("id") Integer id,@RequestBody Contato contato){
         return contatoService.atualizarContato(id, contato);

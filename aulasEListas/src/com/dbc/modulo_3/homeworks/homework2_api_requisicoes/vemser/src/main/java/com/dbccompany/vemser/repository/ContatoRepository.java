@@ -25,6 +25,12 @@ public class ContatoRepository {
         return contato;
     }
 
+    public List<Contato> listarContatoPessoa (Integer idPessoa){
+        return contatos.stream()
+                .filter(c-> c.getIdPessoa().equals(idPessoa))
+                .collect(Collectors.toList());
+    }
+
     public List<Contato> listarContatos (){
         return contatos;
     }
