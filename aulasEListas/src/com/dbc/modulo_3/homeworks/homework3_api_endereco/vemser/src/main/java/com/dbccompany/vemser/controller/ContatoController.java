@@ -1,10 +1,13 @@
 package com.dbccompany.vemser.controller;
 
 import com.dbccompany.vemser.entity.Contato;
+import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,7 +18,8 @@ public class ContatoController {
     private ContatoService contatoService;
 
     @PostMapping("/cadastrar")
-    public Contato cadastrarContato (@RequestBody Contato contato){
+    @Validated
+    public Contato cadastrarContato (@Valid @RequestBody Contato contato) throws RegraDeNegocioException {
         return contatoService.cadastrarContato(contato);
     }
 
@@ -30,12 +34,13 @@ public class ContatoController {
     }
 
     @PutMapping("/{id}")
-    public Contato putContato (@PathVariable("id") Integer id,@RequestBody Contato contato){
+    @Validated
+    public Contato putContato (@PathVariable("id") Integer id,@Valid @RequestBody Contato contato) throws RegraDeNegocioException {
         return contatoService.atualizarContato(id, contato);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarContato (@PathVariable("id")Integer id){
+    public void deletarContato (@PathVariable("id")Integer id) throws RegraDeNegocioException {
         contatoService.deletarContato(id);
     }
 

@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.entity.Contato;
+import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.repository.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ContatoService {
         this.contatoRepo = new ContatoRepository();
     }
 
-    public Contato cadastrarContato (Contato contato){
+    public Contato cadastrarContato (Contato contato) throws RegraDeNegocioException {
         return contatoRepo.cadastrarContato(contato);
     }
 
@@ -29,22 +30,12 @@ public class ContatoService {
         return contatoRepo.listarContatoPessoa(idPessoa);
     }
 
-    public Contato atualizarContato (Integer id, Contato contato){
-        Contato cont = null;
-        try {
-            cont = contatoRepo.atualizarContato(id, contato);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cont;
+    public Contato atualizarContato (Integer id, Contato contato) throws RegraDeNegocioException {
+        return contatoRepo.atualizarContato(id, contato);
     }
 
-    public void deletarContato (Integer id){
-        try {
-            contatoRepo.deletarContato(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void deletarContato (Integer id) throws RegraDeNegocioException {
+        contatoRepo.deletarContato(id);
     }
 
     public List<Contato> listarPorTipo (String tipo){

@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.repository;
 
 import com.dbccompany.vemser.entity.Pessoa;
+import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -34,29 +35,31 @@ public class PessoaRepository {
         return pessoas;
     }
 
-    public Pessoa atualizarPessoa (Integer id, Pessoa p) throws Exception {
-        Pessoa pessoaEncontrada = pessoas.stream()
-                .filter(pessoa-> pessoa.getId().equals(id))
-                .findFirst()
-                .orElseThrow(()-> new Exception("Pessoa não encontrada."));
+    public Pessoa atualizarPessoa (Integer id, Pessoa p) throws RegraDeNegocioException {
+        Pessoa pessoaEncontrada = encontrarPorId(id);
         pessoaEncontrada.setNome(p.getNome());
         pessoaEncontrada.setNascimento(p.getNascimento());
         pessoaEncontrada.setCpf(p.getCpf());
         return pessoaEncontrada;
     }
 
-    public void deletarPessoa (Integer id) throws Exception {
-      Pessoa pessoaDelete = pessoas.stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst()
-                .orElseThrow(()->new Exception("Pessoa não encontrada."));
+    public Pessoa deletarPessoa (Integer id) throws RegraDeNegocioException {
+      Pessoa pessoaDelete = encontrarPorId(id);
       pessoas.remove(pessoaDelete);
+      return pessoaDelete;
     }
 
     public List<Pessoa> listarPorNome (String nome){
         return pessoas.stream()
                 .filter(p -> p.getNome().equalsIgnoreCase(nome))
                 .collect(Collectors.toList());
+    }
+
+    private Pessoa encontrarPorId (Integer id) throws RegraDeNegocioException {
+        return pessoas.stream()
+                .filter(pessoa-> pessoa.getId().equals(id))
+                .findFirst()
+                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada."));
     }
 
 }

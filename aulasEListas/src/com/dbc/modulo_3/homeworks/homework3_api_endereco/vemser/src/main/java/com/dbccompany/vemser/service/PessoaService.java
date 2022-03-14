@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.entity.Pessoa;
+import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.repository.PessoaRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,40 +24,19 @@ public class PessoaService {
     }
 
     public Pessoa cadastrarPessoa (Pessoa pessoa){
-        try{
-            if (validacaoPessoa(pessoa)){
-                throw new Exception ("Erro no cadastro!\nVerifique os campos:\nnome, cpf e data: Não podem estar vazios.");
-            }
-            return pessoaRepo.cadastrarPessoa(pessoa);
-        }catch (Exception e){
-            System.err.println(e.getMessage());
-        }
-        return null;
+        return pessoaRepo.cadastrarPessoa(pessoa);
     }
 
     public List<Pessoa> listarPessoas (){
         return pessoaRepo.listarPessoas();
     }
 
-    public Pessoa atualizarPessoa (Integer id, Pessoa pessoa){
-        Pessoa p = null;
-        try{
-            if (validacaoPessoa(pessoa)){
-                throw new Exception ("Erro na atualização!\nVerifique os campos:\nnome, cpf e data: Não podem estar vazios.");
-            }
-            p = pessoaRepo.atualizarPessoa(id, pessoa);
-        }catch (Exception e){
-            System.err.println(e.getMessage());
-        }
-        return p;
+    public Pessoa atualizarPessoa (Integer id, Pessoa pessoa) throws Exception {
+        return pessoaRepo.atualizarPessoa(id, pessoa);
     }
 
-    public void deletarPessoa (Integer id){
-        try {
-            pessoaRepo.deletarPessoa(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void deletarPessoa (Integer id) throws RegraDeNegocioException {
+        pessoaRepo.deletarPessoa(id);
     }
 
     public List<Pessoa> encontrarPorNome (String nome){

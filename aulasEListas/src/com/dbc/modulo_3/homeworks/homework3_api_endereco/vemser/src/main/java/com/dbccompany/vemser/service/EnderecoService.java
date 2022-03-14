@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.entity.Endereco;
+import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository endRepo;
 
-    public Endereco cadastrarEndereco (Endereco endereco, Integer id) {
+    public Endereco cadastrarEndereco (Endereco endereco, Integer id) throws RegraDeNegocioException {
         return endRepo.cadastrarEndereco(endereco, id);
     }
 
@@ -21,33 +22,19 @@ public class EnderecoService {
         return endRepo.listarEnderecos();
     }
 
-    public Endereco encontrarEnderecoPorId (Integer id){
-        try {
-            return endRepo.encontrarEnderecoPorId(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Endereco encontrarEnderecoPorId (Integer id) throws RegraDeNegocioException {
+        return endRepo.encontrarEnderecoPorId(id);
     }
 
     public List<Endereco> encontrarEnderecosPorPessoa (Integer idPessoa){
         return endRepo.encontrarEnderecoPorPessoa(idPessoa);
     }
 
-    public Endereco atualizarEndereco (Integer id, Endereco endereco){
-        try {
-            return endRepo.atualizarEndereco(id,endereco);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Endereco atualizarEndereco (Integer id, Endereco endereco) throws RegraDeNegocioException {
+        return endRepo.atualizarEndereco(id,endereco);
     }
 
-    public void deletarEndereco (Integer id){
-        try {
-            endRepo.deletarEndereco(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void deletarEndereco (Integer id) throws RegraDeNegocioException {
+        endRepo.deletarEndereco(id);
     }
 }
