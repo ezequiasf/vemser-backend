@@ -1,5 +1,7 @@
 package com.dbccompany.vemser.controller;
 
+import com.dbccompany.vemser.dto.EnderecoCreateDTO;
+import com.dbccompany.vemser.dto.EnderecoDTO;
 import com.dbccompany.vemser.entity.Endereco;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.EnderecoService;
@@ -18,29 +20,29 @@ public class EnderecoController {
     private EnderecoService endService;
 
     @GetMapping("/")
-    public List<Endereco> getEnderecos (){
+    public List<EnderecoDTO> getEnderecos (){
         return endService.listarEnderecos();
     }
 
     @GetMapping("/{id}")
-    public Endereco getEnderecoPorId (@PathVariable("id") Integer idEndereco) throws RegraDeNegocioException {
+    public EnderecoDTO getEnderecoPorId (@PathVariable("id") Integer idEndereco) throws RegraDeNegocioException {
         return endService.encontrarEnderecoPorId(idEndereco);
     }
 
     @GetMapping("/{idPessoa}/pessoa")
-    public List<Endereco> encontrarEnderecoPorPessoa (@PathVariable("idPessoa")Integer idPessoa){
+    public List<EnderecoDTO> encontrarEnderecoPorPessoa (@PathVariable("idPessoa")Integer idPessoa){
         return endService.encontrarEnderecosPorPessoa(idPessoa);
     }
 
     @PostMapping("/{idPessoa}")
     @Validated
-    public Endereco cadastrarEndereco (@PathVariable("idPessoa") Integer idPessoa,@Valid @RequestBody Endereco endereco) throws RegraDeNegocioException {
+    public EnderecoDTO cadastrarEndereco (@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         return endService.cadastrarEndereco(endereco,idPessoa);
     }
 
     @PutMapping("/{id}")
     @Validated
-    public Endereco atualizarEndereco (@PathVariable ("id")Integer id,@Valid @RequestBody Endereco endereco) throws RegraDeNegocioException {
+    public EnderecoDTO atualizarEndereco (@PathVariable ("id")Integer id,@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         return endService.atualizarEndereco(id, endereco);
     }
 

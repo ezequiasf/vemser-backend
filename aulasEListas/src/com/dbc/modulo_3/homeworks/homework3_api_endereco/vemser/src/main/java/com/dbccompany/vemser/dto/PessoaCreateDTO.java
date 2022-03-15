@@ -1,6 +1,8 @@
-package com.dbccompany.vemser.entity;
+package com.dbccompany.vemser.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,8 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Pessoa {
-    private Integer id;
+public class PessoaCreateDTO {
     @NotNull
     @NotEmpty
     private String nome;

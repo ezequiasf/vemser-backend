@@ -1,4 +1,4 @@
-package com.dbccompany.vemser.entity;
+package com.dbccompany.vemser.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Endereco {
-    private Integer idEndereco;
+public class EnderecoCreateDTO {
     private Integer idPessoa;
     @NotNull
     private String tipoEndereco;

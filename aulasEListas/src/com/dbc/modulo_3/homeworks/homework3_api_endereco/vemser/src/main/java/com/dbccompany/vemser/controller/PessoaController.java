@@ -1,5 +1,7 @@
 package com.dbccompany.vemser.controller;
 
+import com.dbccompany.vemser.dto.PessoaCreateDTO;
+import com.dbccompany.vemser.dto.PessoaDTO;
 import com.dbccompany.vemser.entity.Pessoa;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.PessoaService;
@@ -31,21 +33,20 @@ public class PessoaController {
     }
 
     @GetMapping("/all")
-    public List<Pessoa> listarPessoas(){
+    public List<PessoaDTO> listarPessoas(){
         return pessoaService.listarPessoas();
     }
 
     @Validated
     @PostMapping("/cadastro")
-    public Pessoa cadastrarPessoa (@Valid @RequestBody Pessoa pessoa){
-        return pessoaService.cadastrarPessoa(pessoa);
+    public PessoaDTO cadastrarPessoa (@Valid @RequestBody PessoaCreateDTO pessoaCreate){
+        return pessoaService.cadastrarPessoa(pessoaCreate);
     }
 
     @Validated
     @PutMapping("/{id}")
-    public Pessoa atualizarPessoa (@PathVariable("id")Integer id, @Valid @RequestBody Pessoa pessoa) throws Exception {
-        Pessoa p = pessoaService.atualizarPessoa(id,pessoa);
-        return p;
+    public PessoaDTO atualizarPessoa (@PathVariable("id")Integer id, @Valid @RequestBody PessoaCreateDTO pessoa) throws Exception {
+        return pessoaService.atualizarPessoa(id,pessoa);
     }
 
     @DeleteMapping("/{id}")
@@ -54,7 +55,7 @@ public class PessoaController {
     }
 
     @GetMapping("/findByName")
-    public List<Pessoa> listarPessoasPorNome (@RequestParam("nome") String nome){
+    public List<PessoaDTO> listarPessoasPorNome (@RequestParam("nome") String nome){
         return pessoaService.encontrarPorNome(nome);
     }
 }

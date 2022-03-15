@@ -1,5 +1,7 @@
 package com.dbccompany.vemser.controller;
 
+import com.dbccompany.vemser.dto.ContatoCreateDTO;
+import com.dbccompany.vemser.dto.ContatoDTO;
 import com.dbccompany.vemser.entity.Contato;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.ContatoService;
@@ -19,23 +21,23 @@ public class ContatoController {
 
     @PostMapping("/cadastrar")
     @Validated
-    public Contato cadastrarContato (@Valid @RequestBody Contato contato) throws RegraDeNegocioException {
+    public ContatoDTO cadastrarContato (@Valid @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException {
         return contatoService.cadastrarContato(contato);
     }
 
     @GetMapping("/all")
-    public List<Contato> getContatos (){
+    public List<ContatoDTO> getContatos (){
         return contatoService.listarContatos();
     }
 
     @GetMapping("/pessoa/{id}")
-    public List<Contato> listarContatosPorPessoa (@PathVariable("id") Integer idPessoa){
+    public List<ContatoDTO> listarContatosPorPessoa (@PathVariable("id") Integer idPessoa){
         return contatoService.listarContatosPorPessoa(idPessoa);
     }
 
     @PutMapping("/{id}")
     @Validated
-    public Contato putContato (@PathVariable("id") Integer id,@Valid @RequestBody Contato contato) throws RegraDeNegocioException {
+    public ContatoDTO putContato (@PathVariable("id") Integer id,@Valid @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException {
         return contatoService.atualizarContato(id, contato);
     }
 
@@ -45,7 +47,7 @@ public class ContatoController {
     }
 
     @GetMapping("/findByTipo")
-    public List<Contato> encontrarPorTipo (@RequestParam("tipo") String tipo){
+    public List<ContatoDTO> encontrarPorTipo (@RequestParam("tipo") String tipo){
         return contatoService.listarPorTipo(tipo);
     }
 
