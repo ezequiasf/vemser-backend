@@ -22,8 +22,7 @@ public class ContatoRepository {
         contatos.add(new Contato(COUNTER.incrementAndGet(), 3, "RESIDENCIAL", "8423632", "Whats"));
     }
 
-    public Contato cadastrarContato (Contato contato) throws RegraDeNegocioException {
-        validarPessoaExiste(contato);
+    public Contato cadastrarContato (Contato contato) {
         contato.setIdContato(COUNTER.incrementAndGet());
         contatos.add(contato);
         return contato;
@@ -40,7 +39,6 @@ public class ContatoRepository {
     }
 
     public Contato atualizarContato (Integer id, Contato contato) throws RegraDeNegocioException {
-        validarPessoaExiste(contato);
         Contato contatoAtualizar = encontrarContatoPorId(id);
         contatoAtualizar.setTipoContato(contato.getTipoContato());
         contatoAtualizar.setDescricao(contato.getDescricao());
@@ -59,18 +57,11 @@ public class ContatoRepository {
                 .collect(Collectors.toList());
     }
 
-    private Contato encontrarContatoPorId(Integer id) throws RegraDeNegocioException {
+    //Método get sendo usado para validação.
+    public Contato encontrarContatoPorId(Integer id) throws RegraDeNegocioException {
         return contatos.stream()
                 .filter(c -> c.getIdContato().equals(id))
                 .findFirst()
                 .orElseThrow(()-> new RegraDeNegocioException("Contato não encontrado."));
     }
-
-    private void validarPessoaExiste (Contato contato) throws RegraDeNegocioException{
-        contatos.stream()
-                .filter(c -> c.getIdPessoa().equals(contato.getIdPessoa()))
-                .findFirst()
-                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não existe no banco!"));
-    }
-
 }

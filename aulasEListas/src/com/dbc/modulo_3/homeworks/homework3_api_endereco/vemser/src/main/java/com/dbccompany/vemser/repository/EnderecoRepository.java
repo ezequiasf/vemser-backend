@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Repository
 public class EnderecoRepository {
 
-    private List<Endereco> enderecos;
+    private final List<Endereco> enderecos;
     private final AtomicInteger COUNTER = new AtomicInteger();
 
     public EnderecoRepository (){
@@ -34,8 +34,7 @@ public class EnderecoRepository {
                 .orElseThrow(()-> new RegraDeNegocioException ("Endereço não encontrado."));
     }
 
-    public Endereco cadastrarEndereco (Endereco endereco, Integer idPessoa) throws RegraDeNegocioException {
-        validarPessoaExiste(idPessoa);
+    public Endereco cadastrarEndereco (Endereco endereco, Integer idPessoa) {
         endereco.setIdEndereco(COUNTER.incrementAndGet());
         endereco.setIdPessoa(idPessoa);
         enderecos.add(endereco);
@@ -43,8 +42,13 @@ public class EnderecoRepository {
     }
 
     public Endereco atualizarEndereco (Integer id, Endereco endereco) throws RegraDeNegocioException {
-        validarPessoaExiste(endereco.getIdPessoa());
         Endereco endAtualizar = encontrarEnderecoPorId(id);
+        endAtualizar.setCep(endereco.getCep());
+        endAtualizar.setCidade(endereco.getCidade());
+        endAtualizar.setPais(endereco.getPais());
+        endAtualizar.setTipoEndereco(endereco.getTipoEndereco());
+        endAtualizar.setEstado(endereco.getEstado());
+        endAtualizar.setNumero(endereco.getNumero());
         endAtualizar.setBairro(endereco.getBairro());
         endAtualizar.setLogradouro(endereco.getLogradouro());
         return endAtualizar;
@@ -61,10 +65,5 @@ public class EnderecoRepository {
                 .collect(Collectors.toList());
     }
 
-    private void validarPessoaExiste (Integer idPessoa) throws RegraDeNegocioException{
-        enderecos.stream()
-                .filter(e-> e.getIdPessoa().equals(idPessoa))
-                .findFirst()
-                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada no banco!"));
-    }
+
 }

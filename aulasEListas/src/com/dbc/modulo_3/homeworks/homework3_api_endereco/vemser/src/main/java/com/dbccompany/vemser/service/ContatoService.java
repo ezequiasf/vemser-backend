@@ -19,6 +19,7 @@ public class ContatoService {
     }
 
     public Contato cadastrarContato (Contato contato) throws RegraDeNegocioException {
+        validarPessoaExiste(contato);
         return contatoRepo.cadastrarContato(contato);
     }
 
@@ -31,6 +32,7 @@ public class ContatoService {
     }
 
     public Contato atualizarContato (Integer id, Contato contato) throws RegraDeNegocioException {
+        validarPessoaExiste(contato);
         return contatoRepo.atualizarContato(id, contato);
     }
 
@@ -40,5 +42,12 @@ public class ContatoService {
 
     public List<Contato> listarPorTipo (String tipo){
         return contatoRepo.encontrarPorTipo(tipo);
+    }
+
+    public void validarPessoaExiste (Contato contato) throws RegraDeNegocioException{
+        contatoRepo.listarContatos().stream()
+                .filter(c -> c.getIdPessoa().equals(contato.getIdPessoa()))
+                .findFirst()
+                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não existe no banco!"));
     }
 }
