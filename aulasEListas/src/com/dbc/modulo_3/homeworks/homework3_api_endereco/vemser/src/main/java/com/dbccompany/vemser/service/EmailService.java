@@ -61,7 +61,7 @@ public class EmailService {
         emailSender.send(message);
     }
 
-    public void sendEmail(DTO dto) {
+    public void sendEmail(DTO dto, String template) {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
 
@@ -70,7 +70,7 @@ public class EmailService {
             mimeMessageHelper.setFrom(from);
             mimeMessageHelper.setTo(MAIL_TO);
             mimeMessageHelper.setSubject("TESTE");
-            mimeMessageHelper.setText(geContentFromTemplate(dto), true);
+            mimeMessageHelper.setText(geContentFromTemplate(dto, template), true);
 
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {
@@ -78,7 +78,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplate(DTO dto) throws IOException, TemplateException {
+    public String geContentFromTemplate(DTO dto, String templateModel) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         if (dto instanceof PessoaDTO) {
             dados.put("nome", ((PessoaDTO) dto).getNome());
@@ -86,7 +86,7 @@ public class EmailService {
         }
         dados.put("email", this.from);
         fmConfiguration.setDirectoryForTemplateLoading(new File("src/main/resources/templates"));
-        Template template = fmConfiguration.getTemplate("email-template.ftl");
+        Template template = fmConfiguration.getTemplate(templateModel);
         return FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
     }
 }

@@ -49,9 +49,10 @@ public class PessoaService {
         return objectMapper.convertValue(pessoaAtualizada, PessoaDTO.class);
     }
 
-    public void deletarPessoa (Integer id) throws RegraDeNegocioException {
+    public PessoaDTO deletarPessoa (Integer id) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Deletar Pessoa");
-        pessoaRepo.deletarPessoa(id);
+        Pessoa pessoaDeletada = pessoaRepo.deletarPessoa(id);
+        return objectMapper.convertValue(pessoaDeletada, PessoaDTO.class);
     }
 
     public List<PessoaDTO> encontrarPorNome (String nome){
