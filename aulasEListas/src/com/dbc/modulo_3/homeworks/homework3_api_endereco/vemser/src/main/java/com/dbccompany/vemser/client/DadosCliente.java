@@ -2,6 +2,7 @@ package com.dbccompany.vemser.client;
 
 import com.dbccompany.vemser.dto.DadosPessoaisDTO;
 import feign.Headers;
+import feign.Param;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -16,4 +17,13 @@ public interface DadosCliente {
 
     @RequestLine("POST /dados-pessoais")
     DadosPessoaisDTO post(DadosPessoaisDTO dadosPessoaisDTO);
+
+    @RequestLine("PUT /dados-pessoais/{cpf}")
+    DadosPessoaisDTO put(@Param("cpf") String cpf, DadosPessoaisDTO dadosPessoaisDTO);
+
+    @RequestLine("DELETE /dados-pessoais/{cpf}")
+    void delete(@Param("cpf") String cpf);
+
+    @RequestLine("GET /dados-pessoais/{cpf}")
+    DadosPessoaisDTO get(@Param("cpf") String cpf);
 }

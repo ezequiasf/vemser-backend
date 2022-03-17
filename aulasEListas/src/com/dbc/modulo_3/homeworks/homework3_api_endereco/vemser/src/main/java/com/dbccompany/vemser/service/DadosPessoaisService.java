@@ -23,4 +23,15 @@ public class DadosPessoaisService {
         return client.post(dto);
     }
 
+    public DadosPessoaisDTO atualizarDadoAmbienteExternoPessoa (String cpf, DadosPessoaisDTO dto){
+        return client.put(cpf, dto);
+    }
+
+    public void deletarDadoAmbienteExternoPessoa (String cpf){
+        client.delete(cpf);
+    }
+
+    public DadosPessoaisDTO requisitarDadosPorCpf (String cpf){
+        return client.get(cpf);
+    }
 }
