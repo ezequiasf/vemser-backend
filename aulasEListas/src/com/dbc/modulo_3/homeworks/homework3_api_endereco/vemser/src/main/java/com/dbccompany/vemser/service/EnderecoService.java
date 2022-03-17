@@ -53,9 +53,9 @@ public class EnderecoService {
         return objectMapper.convertValue(enderecoAtualizado, EnderecoDTO.class);
     }
 
-    public void deletarEndereco (Integer id) throws RegraDeNegocioException {
+    public EnderecoDTO deletarEndereco (Integer id) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Deletar Endereço");
-        endRepo.deletarEndereco(id);
+        return objectMapper.convertValue(endRepo.deletarEndereco(id), EnderecoDTO.class);
     }
 
     public void validarPessoaExiste (Integer idPessoa) throws RegraDeNegocioException{

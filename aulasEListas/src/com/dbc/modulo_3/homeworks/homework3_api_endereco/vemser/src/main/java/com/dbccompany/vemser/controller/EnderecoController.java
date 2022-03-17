@@ -4,6 +4,7 @@ import com.dbccompany.vemser.dto.EnderecoCreateDTO;
 import com.dbccompany.vemser.dto.EnderecoDTO;
 import com.dbccompany.vemser.entity.Endereco;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
+import com.dbccompany.vemser.service.EmailService;
 import com.dbccompany.vemser.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,9 @@ public class EnderecoController {
 
     @Autowired
     private EnderecoService endService;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/")
     public List<EnderecoDTO> getEnderecos (){
@@ -37,17 +41,23 @@ public class EnderecoController {
     @PostMapping("/{idPessoa}")
     @Validated
     public EnderecoDTO cadastrarEndereco (@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-        return endService.cadastrarEndereco(endereco,idPessoa);
+        EnderecoDTO enderecoDto = endService.cadastrarEndereco(endereco,idPessoa);
+        emailService.sendEmail(enderecoDto, "endereco-template.ftl");
+        return enderecoDto;
     }
 
     @PutMapping("/{id}")
     @Validated
     public EnderecoDTO atualizarEndereco (@PathVariable ("id")Integer id,@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-        return endService.atualizarEndereco(id, endereco);
+        EnderecoDTO endDto = endService.atualizarEndereco(id, endereco);
+        emailService.sendEmail(endDto, "atualizarendereco-template.ftl");
+        return endDto;
     }
 
     @DeleteMapping("/{id}")
-    public void deletarEndereco (@PathVariable("id")Integer id) throws RegraDeNegocioException {
-        endService.deletarEndereco(id);
+    public EnderecoDTO deletarEndereco (@PathVariable("id")Integer id) throws RegraDeNegocioException {
+        EnderecoDTO enderecoDTO = endService.deletarEndereco(id);
+        emailService.sendEmail(enderecoDTO, "excluirendereco-template.ftl");
+        return enderecoDTO;
     }
 }

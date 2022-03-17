@@ -1,6 +1,7 @@
 package com.dbccompany.vemser.service;
 
 import com.dbccompany.vemser.dto.DTO;
+import com.dbccompany.vemser.dto.EnderecoDTO;
 import com.dbccompany.vemser.dto.PessoaDTO;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -83,6 +84,10 @@ public class EmailService {
         if (dto instanceof PessoaDTO) {
             dados.put("nome", ((PessoaDTO) dto).getNome());
             dados.put("id", ((PessoaDTO) dto).getId());
+        }else if (dto instanceof EnderecoDTO){
+            dados.put("idPessoa", ((EnderecoDTO) dto).getIdPessoa());
+            dados.put("logradouro", ((EnderecoDTO) dto).getLogradouro());
+            dados.put("numero", ((EnderecoDTO) dto).getNumero());
         }
         dados.put("email", this.from);
         fmConfiguration.setDirectoryForTemplateLoading(new File("src/main/resources/templates"));

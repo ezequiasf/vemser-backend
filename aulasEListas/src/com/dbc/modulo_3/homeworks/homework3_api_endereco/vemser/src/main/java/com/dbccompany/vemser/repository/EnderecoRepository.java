@@ -54,9 +54,10 @@ public class EnderecoRepository {
         return endAtualizar;
     }
 
-    public void deletarEndereco (Integer id) throws RegraDeNegocioException {
+    public Endereco deletarEndereco (Integer id) throws RegraDeNegocioException {
         Endereco endDeletar = encontrarEnderecoPorId(id);
         enderecos.remove(endDeletar);
+        return endDeletar;
     }
 
     public List<Endereco> encontrarEnderecoPorPessoa (Integer idPessoa){
