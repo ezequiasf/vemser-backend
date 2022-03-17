@@ -1,8 +1,11 @@
 package com.dbccompany.vemser.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PessoaDTO extends PessoaCreateDTO{
     private Integer id;
 }

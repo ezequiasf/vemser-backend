@@ -19,10 +19,13 @@ public class PessoaRepository {
 
     public PessoaRepository (){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        pessoas.add(new Pessoa(COUNTER.incrementAndGet(),"Marcos", LocalDate.parse("10/10/2000", formatter),"12343456556"));
-//        pessoas.add(new Pessoa(COUNTER.incrementAndGet(),"Claudia", LocalDate.parse("01/02/2005", formatter),"1212312316556"));
-//        pessoas.add(new Pessoa(COUNTER.incrementAndGet(),"Joao", LocalDate.parse("02/03/1997", formatter),"1234332326"));
-//        pessoas.add(new Pessoa(COUNTER.incrementAndGet(),"Jose", LocalDate.parse("11/03/2001", formatter),"123434423456"));
+        Pessoa p = Pessoa.builder().id(COUNTER.incrementAndGet())
+                        .nome("João")
+                        .cpf("12133343456")
+                        .nascimento(LocalDate.parse("10/10/2000", formatter))
+                        .email("a@j.com").build();
+
+        pessoas.add(p);
     }
 
     public Pessoa cadastrarPessoa (Pessoa pessoa){

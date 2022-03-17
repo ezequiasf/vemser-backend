@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PessoaCreateDTO {
+public class PessoaCreateDTO implements DTO{
     @NotBlank
     private String nome;
     @NotNull
@@ -22,4 +22,6 @@ public class PessoaCreateDTO {
     private LocalDate nascimento;
     @CPF
     private String cpf;
+    @Email
+    private String email;
 }
