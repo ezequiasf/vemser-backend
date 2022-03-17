@@ -6,6 +6,9 @@ import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.EmailService;
 import com.dbccompany.vemser.service.PessoaService;
 import com.dbccompany.vemser.service.PropertieReader;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +34,9 @@ public class PessoaController {
         return "O ambiente é: " + leitor.getAmbiente();
     }
 
+    @ApiOperation(value = "Retorna uma lista de pessoas")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Retorna a lista de pessoas"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"), @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     @GetMapping("/all")
     public List<PessoaDTO> listarPessoas() {
         return pessoaService.listarPessoas();
