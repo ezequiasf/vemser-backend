@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EnderecoCreateDTO implements DTO{
+public class EnderecoCreateDTO {
     private Integer idPessoa;
     @NotBlank
     private String tipoEndereco;

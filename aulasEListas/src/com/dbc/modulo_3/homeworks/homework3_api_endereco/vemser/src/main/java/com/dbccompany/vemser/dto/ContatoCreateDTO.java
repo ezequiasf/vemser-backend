@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ContatoCreateDTO implements DTO{
+public class ContatoCreateDTO {
     private Integer idPessoa;
     @NotBlank
     private String tipoContato;

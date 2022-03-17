@@ -2,6 +2,7 @@ package com.dbccompany.vemser.controller;
 
 import com.dbccompany.vemser.dto.EnderecoCreateDTO;
 import com.dbccompany.vemser.dto.EnderecoDTO;
+import com.dbccompany.vemser.entity.Endereco;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
 import com.dbccompany.vemser.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;

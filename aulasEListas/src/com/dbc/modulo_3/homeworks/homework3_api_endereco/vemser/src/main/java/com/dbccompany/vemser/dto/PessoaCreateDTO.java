@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PessoaCreateDTO implements DTO{
+public class PessoaCreateDTO {
     @NotBlank
     private String nome;
     @NotNull

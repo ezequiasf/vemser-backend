@@ -4,7 +4,6 @@ import com.dbccompany.vemser.dto.PessoaCreateDTO;
 import com.dbccompany.vemser.dto.PessoaDTO;
 import com.dbccompany.vemser.entity.Pessoa;
 import com.dbccompany.vemser.exceptions.RegraDeNegocioException;
-import com.dbccompany.vemser.service.EmailService;
 import com.dbccompany.vemser.service.PessoaService;
 import com.dbccompany.vemser.service.PropertieReader;
 import org.apache.commons.lang3.ObjectUtils;
@@ -28,9 +27,6 @@ public class PessoaController {
     @Autowired
     private PropertieReader leitor;
 
-    @Autowired
-    private EmailService servicoDeEmail;
-
     @GetMapping("/ambiente")
     public String retornaAmbiente(){
         return "O ambiente é: "+ leitor.getAmbiente();
@@ -44,9 +40,7 @@ public class PessoaController {
     @Validated
     @PostMapping("/cadastro")
     public PessoaDTO cadastrarPessoa (@Valid @RequestBody PessoaCreateDTO pessoaCreate){
-        PessoaDTO pessoaCadastrada = pessoaService.cadastrarPessoa(pessoaCreate);
-        servicoDeEmail.sendEmail(pessoaCadastrada);
-        return pessoaCadastrada;
+        return pessoaService.cadastrarPessoa(pessoaCreate);
     }
 
     @Validated
