@@ -42,6 +42,10 @@ public class PessoaController {
         return pessoaService.listarPessoas();
     }
 
+    @ApiOperation(value = "Cadastra uma pessoa")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Uma pessoa foi cadastrada com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     @Validated
     @PostMapping("/cadastro")
     public PessoaDTO cadastrarPessoa(@Valid @RequestBody PessoaCreateDTO pessoaCreate) {
@@ -50,6 +54,10 @@ public class PessoaController {
         return pessoaCadastrada;
     }
 
+    @ApiOperation(value = "Atualizar uma pessoa")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Uma pessoa foi atualizada com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     @Validated
     @PutMapping("/{id}")
     public PessoaDTO atualizarPessoa(@PathVariable("id") Integer id, @Valid @RequestBody PessoaCreateDTO pessoa) throws Exception {
@@ -58,6 +66,10 @@ public class PessoaController {
         return pessoaAtualizada;
     }
 
+    @ApiOperation(value = "Deleta uma pessoa")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Uma pessoa foi deletada com sucesso do cadastro"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     @DeleteMapping("/{id}")
     public PessoaDTO deletarPessoa(@PathVariable Integer id) throws RegraDeNegocioException {
         PessoaDTO p = pessoaService.deletarPessoa(id);
@@ -65,6 +77,10 @@ public class PessoaController {
         return p;
     }
 
+    @ApiOperation(value = "Retorna uma lista de pessoas através do nome.")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Retorna uma lista de pessoas"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     @GetMapping("/findByName")
     public List<PessoaDTO> listarPessoasPorNome(@RequestParam("nome") String nome) {
         return pessoaService.encontrarPorNome(nome);
