@@ -40,7 +40,7 @@ public class PessoaController {
     @PostMapping("/cadastro")
     public PessoaDTO cadastrarPessoa(@Valid @RequestBody PessoaCreateDTO pessoaCreate) {
         PessoaDTO pessoaCadastrada = pessoaService.cadastrarPessoa(pessoaCreate);
-        servicoDeEmail.sendEmail(pessoaCadastrada, "email-template.ftl");
+        servicoDeEmail.sendEmail(pessoaCadastrada, "cadastro-pessoa-template.ftl");
         return pessoaCadastrada;
     }
 
@@ -48,14 +48,14 @@ public class PessoaController {
     @PutMapping("/{id}")
     public PessoaDTO atualizarPessoa(@PathVariable("id") Integer id, @Valid @RequestBody PessoaCreateDTO pessoa) throws Exception {
         PessoaDTO pessoaAtualizada = pessoaService.atualizarPessoa(id, pessoa);
-        servicoDeEmail.sendEmail(pessoaAtualizada, "atualizar-template.ftl");
+        servicoDeEmail.sendEmail(pessoaAtualizada, "atualizar-pessoa-template.ftl");
         return pessoaAtualizada;
     }
 
     @DeleteMapping("/{id}")
     public PessoaDTO deletarPessoa(@PathVariable Integer id) throws RegraDeNegocioException {
-       PessoaDTO p = pessoaService.deletarPessoa(id);
-        servicoDeEmail.sendEmail(p, "deletar-template.ftl");
+        PessoaDTO p = pessoaService.deletarPessoa(id);
+        servicoDeEmail.sendEmail(p, "deletar-pessoa-template.ftl");
         return p;
     }
 

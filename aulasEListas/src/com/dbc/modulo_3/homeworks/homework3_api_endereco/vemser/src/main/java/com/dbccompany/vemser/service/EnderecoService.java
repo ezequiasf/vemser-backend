@@ -23,7 +23,7 @@ public class EnderecoService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public EnderecoDTO cadastrarEndereco (EnderecoCreateDTO enderecoCreate, Integer idPessoa) throws RegraDeNegocioException {
+    public EnderecoDTO cadastrarEndereco(EnderecoCreateDTO enderecoCreate, Integer idPessoa) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Cadastrar Endereço");
         validarPessoaExiste(idPessoa);
         log.info("Feita validação da pessoa.");
@@ -32,42 +32,42 @@ public class EnderecoService {
         return objectMapper.convertValue(enderecoComId, EnderecoDTO.class);
     }
 
-    public List<EnderecoDTO> listarEnderecos (){
+    public List<EnderecoDTO> listarEnderecos() {
         return conversorListaDTO(endRepo.listarEnderecos());
     }
 
-    public EnderecoDTO encontrarEnderecoPorId (Integer id) throws RegraDeNegocioException {
+    public EnderecoDTO encontrarEnderecoPorId(Integer id) throws RegraDeNegocioException {
         return objectMapper.convertValue(endRepo.encontrarEnderecoPorId(id), EnderecoDTO.class);
     }
 
-    public List<EnderecoDTO> encontrarEnderecosPorPessoa (Integer idPessoa){
-        return  conversorListaDTO(endRepo.encontrarEnderecoPorPessoa(idPessoa));
+    public List<EnderecoDTO> encontrarEnderecosPorPessoa(Integer idPessoa) {
+        return conversorListaDTO(endRepo.encontrarEnderecoPorPessoa(idPessoa));
     }
 
-    public EnderecoDTO atualizarEndereco (Integer id, EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+    public EnderecoDTO atualizarEndereco(Integer id, EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Atualizar endereço.");
         validarPessoaExiste(endereco.getIdPessoa());
         log.info("Feita validação da pessoa.");
         Endereco enderecoNovoDado = objectMapper.convertValue(endereco, Endereco.class);
-        Endereco enderecoAtualizado = endRepo.atualizarEndereco(id,enderecoNovoDado);
+        Endereco enderecoAtualizado = endRepo.atualizarEndereco(id, enderecoNovoDado);
         return objectMapper.convertValue(enderecoAtualizado, EnderecoDTO.class);
     }
 
-    public EnderecoDTO deletarEndereco (Integer id) throws RegraDeNegocioException {
+    public EnderecoDTO deletarEndereco(Integer id) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Deletar Endereço");
         return objectMapper.convertValue(endRepo.deletarEndereco(id), EnderecoDTO.class);
     }
 
-    public void validarPessoaExiste (Integer idPessoa) throws RegraDeNegocioException{
+    public void validarPessoaExiste(Integer idPessoa) throws RegraDeNegocioException {
         endRepo.listarEnderecos().stream()
-                .filter(e-> e.getIdPessoa().equals(idPessoa))
+                .filter(e -> e.getIdPessoa().equals(idPessoa))
                 .findFirst()
-                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada no banco!"));
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada no banco!"));
     }
 
-    private List<EnderecoDTO> conversorListaDTO (List<Endereco> enderecos){
+    private List<EnderecoDTO> conversorListaDTO(List<Endereco> enderecos) {
         return enderecos.stream()
-                        .map(end -> objectMapper.convertValue(end, EnderecoDTO.class))
-                        .collect(Collectors.toList());
+                .map(end -> objectMapper.convertValue(end, EnderecoDTO.class))
+                .collect(Collectors.toList());
     }
 }

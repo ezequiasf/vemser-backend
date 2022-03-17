@@ -84,7 +84,7 @@ public class EmailService {
         if (dto instanceof PessoaDTO) {
             dados.put("nome", ((PessoaDTO) dto).getNome());
             dados.put("id", ((PessoaDTO) dto).getId());
-        }else if (dto instanceof EnderecoDTO){
+        } else if (dto instanceof EnderecoDTO) {
             dados.put("idPessoa", ((EnderecoDTO) dto).getIdPessoa());
             dados.put("logradouro", ((EnderecoDTO) dto).getLogradouro());
             dados.put("numero", ((EnderecoDTO) dto).getNumero());

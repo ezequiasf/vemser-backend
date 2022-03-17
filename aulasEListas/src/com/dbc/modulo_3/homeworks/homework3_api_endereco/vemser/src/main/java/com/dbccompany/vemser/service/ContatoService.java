@@ -18,15 +18,15 @@ import java.util.stream.Collectors;
 public class ContatoService {
 
     @Autowired
-    private  ContatoRepository contatoRepo;
+    private ContatoRepository contatoRepo;
     @Autowired
     private ObjectMapper objectMapper;
 
-    public ContatoService (){
+    public ContatoService() {
         this.contatoRepo = new ContatoRepository();
     }
 
-    public ContatoDTO cadastrarContato (ContatoCreateDTO contatoCreate) throws RegraDeNegocioException {
+    public ContatoDTO cadastrarContato(ContatoCreateDTO contatoCreate) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Cadastrar contato");
         log.info("Contato validado.");
         Contato contatoSemId = objectMapper.convertValue(contatoCreate, Contato.class);
@@ -35,15 +35,15 @@ public class ContatoService {
         return objectMapper.convertValue(contatoComId, ContatoDTO.class);
     }
 
-    public List<ContatoDTO> listarContatos (){
+    public List<ContatoDTO> listarContatos() {
         return converterListaContatoParaDTO(contatoRepo.listarContatos());
     }
 
-    public List<ContatoDTO> listarContatosPorPessoa (Integer idPessoa){
+    public List<ContatoDTO> listarContatosPorPessoa(Integer idPessoa) {
         return converterListaContatoParaDTO(contatoRepo.listarContatoPessoa(idPessoa));
     }
 
-    public ContatoDTO atualizarContato (Integer idContato, ContatoCreateDTO contato) throws RegraDeNegocioException {
+    public ContatoDTO atualizarContato(Integer idContato, ContatoCreateDTO contato) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Atualizar contato");
         Contato contatoNovoDado = objectMapper.convertValue(contato, Contato.class);
         validarPessoaExiste(contatoNovoDado);
@@ -52,24 +52,24 @@ public class ContatoService {
         return objectMapper.convertValue(contatoAtualizado, ContatoDTO.class);
     }
 
-    public void deletarContato (Integer id) throws RegraDeNegocioException {
+    public void deletarContato(Integer id) throws RegraDeNegocioException {
         log.info("Chamada de método na service:: Deletar Contato");
         contatoRepo.deletarContato(id);
     }
 
-    public List<ContatoDTO> listarPorTipo (String tipo){
+    public List<ContatoDTO> listarPorTipo(String tipo) {
         return converterListaContatoParaDTO(contatoRepo.encontrarPorTipo(tipo));
     }
 
-    public void validarPessoaExiste (Contato contato) throws RegraDeNegocioException{
+    public void validarPessoaExiste(Contato contato) throws RegraDeNegocioException {
         contatoRepo.listarContatos().stream()
                 .filter(c -> c.getIdPessoa().equals(contato.getIdPessoa()))
                 .findFirst()
-                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não existe no banco!"));
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não existe no banco!"));
     }
 
-    private List<ContatoDTO> converterListaContatoParaDTO(List<Contato> contatos){
-        return  contatos
+    private List<ContatoDTO> converterListaContatoParaDTO(List<Contato> contatos) {
+        return contatos
                 .stream()
                 .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
                 .collect(Collectors.toList());

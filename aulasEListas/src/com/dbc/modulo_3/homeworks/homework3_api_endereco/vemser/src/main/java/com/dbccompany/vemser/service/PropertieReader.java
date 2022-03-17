@@ -8,7 +8,7 @@ public class PropertieReader {
     @Value("${ambiente}")
     private String ambiente;
 
-    public String getAmbiente(){
+    public String getAmbiente() {
         return this.ambiente;
     }
 

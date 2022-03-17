@@ -24,40 +24,40 @@ public class EnderecoController {
     private EmailService emailService;
 
     @GetMapping("/")
-    public List<EnderecoDTO> getEnderecos (){
+    public List<EnderecoDTO> getEnderecos() {
         return endService.listarEnderecos();
     }
 
     @GetMapping("/{id}")
-    public EnderecoDTO getEnderecoPorId (@PathVariable("id") Integer idEndereco) throws RegraDeNegocioException {
+    public EnderecoDTO getEnderecoPorId(@PathVariable("id") Integer idEndereco) throws RegraDeNegocioException {
         return endService.encontrarEnderecoPorId(idEndereco);
     }
 
     @GetMapping("/{idPessoa}/pessoa")
-    public List<EnderecoDTO> encontrarEnderecoPorPessoa (@PathVariable("idPessoa")Integer idPessoa){
+    public List<EnderecoDTO> encontrarEnderecoPorPessoa(@PathVariable("idPessoa") Integer idPessoa) {
         return endService.encontrarEnderecosPorPessoa(idPessoa);
     }
 
     @PostMapping("/{idPessoa}")
     @Validated
-    public EnderecoDTO cadastrarEndereco (@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-        EnderecoDTO enderecoDto = endService.cadastrarEndereco(endereco,idPessoa);
-        emailService.sendEmail(enderecoDto, "endereco-template.ftl");
+    public EnderecoDTO cadastrarEndereco(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+        EnderecoDTO enderecoDto = endService.cadastrarEndereco(endereco, idPessoa);
+        emailService.sendEmail(enderecoDto, "cadastro-endereco-template.ftl");
         return enderecoDto;
     }
 
     @PutMapping("/{id}")
     @Validated
-    public EnderecoDTO atualizarEndereco (@PathVariable ("id")Integer id,@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+    public EnderecoDTO atualizarEndereco(@PathVariable("id") Integer id, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         EnderecoDTO endDto = endService.atualizarEndereco(id, endereco);
-        emailService.sendEmail(endDto, "atualizarendereco-template.ftl");
+        emailService.sendEmail(endDto, "atualizar-endereco-template.ftl");
         return endDto;
     }
 
     @DeleteMapping("/{id}")
-    public EnderecoDTO deletarEndereco (@PathVariable("id")Integer id) throws RegraDeNegocioException {
+    public EnderecoDTO deletarEndereco(@PathVariable("id") Integer id) throws RegraDeNegocioException {
         EnderecoDTO enderecoDTO = endService.deletarEndereco(id);
-        emailService.sendEmail(enderecoDTO, "excluirendereco-template.ftl");
+        emailService.sendEmail(enderecoDTO, "excluir-endereco-template.ftl");
         return enderecoDTO;
     }
 }
