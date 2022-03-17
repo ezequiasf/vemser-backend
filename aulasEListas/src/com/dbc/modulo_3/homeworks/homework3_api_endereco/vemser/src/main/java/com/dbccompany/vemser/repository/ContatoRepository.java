@@ -17,9 +17,6 @@ public class ContatoRepository {
 
     public ContatoRepository (){
         contatos.add(new Contato(COUNTER.incrementAndGet(), 1, "RESIDENCIAL", "8423632", "Whats"));
-        contatos.add(new Contato(COUNTER.incrementAndGet(), 1, "TRABALHO", "8423632", "Whats"));
-        contatos.add(new Contato(COUNTER.incrementAndGet(), 2, "RESIDENCIAL", "8423632", "Whats"));
-        contatos.add(new Contato(COUNTER.incrementAndGet(), 3, "RESIDENCIAL", "8423632", "Whats"));
     }
 
     public Contato cadastrarContato (Contato contato) {

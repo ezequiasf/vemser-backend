@@ -4,14 +4,6 @@
     <title>Java Mail</title>
 </head>
 
-<body>
-Olá ${nome},<br>
-Estamos felizes em ter você no nosso sistema ;)<br>
-Seu cadastro foi realizado com sucesso, seu identificador é ${id}.<br>
-Qualquer dúvida é só contatar o email ${email}.<br>
-Att,<br>
-Sistema.
-
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td align="center" valign="top" bgcolor="#838383"
@@ -22,22 +14,25 @@ Sistema.
                         style="background-color: #d3be6c; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000000; padding: 0px 15px 10px 15px;">
 
                         <div style="font-size: 48px; color:blue;">
-                            <b>Java Mail</b>
+                            <b>Olá, ${nome}</b>
                         </div>
 
                         <div style="font-size: 24px; color: #555100;">
-                            <br> Sending Email using Spring Boot with <b>FreeMarker
-                            template !!!</b> <br>
-                        </div>
-                        <div>
-                            <br>"Sharing the knowledge is biggest learning" <br> <br>
-                            <br> <br> <b>${nome}</b>
-                            <br>
+                            <br> Estamos felizes em ter você no nosso sistema ;)<br>
+                                 Seu cadastro foi realizado com sucesso, seu identificador é ${id}.<br>
+                                 Qualquer dúvida é só contatar o email ${email}.
+                            <br><br>
                         </div>
                     </td>
                 </tr>
             </table> <br> <br></td>
     </tr>
 </table>
+ <div>
+    <br>Att,<br>
+    Sistema.<br> <br>
+    <br> <br>
+    <br>
+ </div>
 </body>
 </html>

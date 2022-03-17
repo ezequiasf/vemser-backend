@@ -81,8 +81,8 @@ public class EmailService {
     public String geContentFromTemplate(DTO dto) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         if (dto instanceof PessoaDTO){
-            dados.put("nome", ((PessoaDTO) dto).getNome());
             dados.put("id", ((PessoaDTO) dto).getId());
+            dados.put("nome", ((PessoaDTO) dto).getNome());
         }
         dados.put("email", this.from);
         fmConfiguration.setDirectoryForTemplateLoading(new File("src/main/resources/templates"));
