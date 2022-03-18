@@ -43,6 +43,7 @@ public class PessoaRepository {
         pessoaEncontrada.setNome(p.getNome());
         pessoaEncontrada.setNascimento(p.getNascimento());
         pessoaEncontrada.setCpf(p.getCpf());
+        pessoaEncontrada.setEmail(p.getEmail());
         return pessoaEncontrada;
     }
 

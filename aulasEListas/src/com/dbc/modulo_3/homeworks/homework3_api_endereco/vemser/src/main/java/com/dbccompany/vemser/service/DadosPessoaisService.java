@@ -1,6 +1,6 @@
 package com.dbccompany.vemser.service;
 
-import com.dbccompany.vemser.client.DadosCliente;
+import com.dbccompany.vemser.client.DadosPessoaisCliente;
 import com.dbccompany.vemser.dto.DadosPessoaisDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 public class DadosPessoaisService {
 
     @Autowired
-    private DadosCliente client;
+    private DadosPessoaisCliente client;
 
     public List<DadosPessoaisDTO> requisitarDadosExternosPessoa (){
         return client.getAll();
