@@ -11,7 +11,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoCreateDTO {
-    private String tipo;
+    @NotBlank
+    private String tipoEndereco;
     @NotBlank
     private String logradouro;
     @NotNull

@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Endereco_Pessoa")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +15,6 @@ public class EnderecoEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_END")
     @SequenceGenerator(name = "SEQ_END", sequenceName = "SEQ_ENDERECO_CONTATO", allocationSize = 1)
     private Integer id_endereco;
-    private Integer id_pessoa;
     private Integer tipo;
     private String logradouro;
     private Integer numero;

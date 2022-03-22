@@ -22,14 +22,15 @@ public class EnderecoService {
     private final ObjectMapper objMapper;
     private final EnderecoRepository endRepo;
 
-    public EnderecoDTO criarEndereco(Integer idPessoa, EnderecoCreateDTO dto) throws RegraDeNegocioException {
-        //TODO: validação da pessoa
+    public EnderecoDTO criarEndereco(EnderecoCreateDTO dto) throws RegraDeNegocioException {
+
         EnderecoEntity end = objMapper.convertValue(dto, EnderecoEntity.class);
-        end.setId_pessoa(idPessoa);
-        end.setTipo(validarTipo(dto.getTipo()));
+        end.setTipo(validarTipo(dto.getTipoEndereco()));
         EnderecoEntity end2 = endRepo.save(end);
+
+
         EnderecoDTO endVolta = objMapper.convertValue(end2, EnderecoDTO.class);
-        endVolta.setTipo(TipoEndereco.ofTipo(end2.getTipo()).toString());
+        endVolta.setTipoEndereco(TipoEndereco.ofTipo(end2.getTipo()).toString());
         return endVolta;
     }
 
@@ -39,7 +40,7 @@ public class EnderecoService {
                 .findById(idEndereco)
                 .orElseThrow(() -> new RegraDeNegocioException("Endereço não existe no banco."));
 
-        end1.setTipo(validarTipo(dto.getTipo()));
+        end1.setTipo(validarTipo(dto.getTipoEndereco()));
         end1.setCep(dto.getCep());
         end1.setCidade(dto.getCidade());
         end1.setComplemento(dto.getComplemento());
@@ -50,7 +51,7 @@ public class EnderecoService {
         EnderecoEntity end2 = endRepo.save(end1);
 
         EnderecoDTO endVolta = objMapper.convertValue(end2, EnderecoDTO.class);
-        endVolta.setTipo(TipoEndereco.ofTipo(end2.getTipo()).toString());
+        endVolta.setTipoEndereco(TipoEndereco.ofTipo(end2.getTipo()).toString());
         return endVolta;
     }
 
@@ -58,7 +59,7 @@ public class EnderecoService {
         return endRepo.findAll().stream()
                 .map(e -> {
                     EnderecoDTO endVolta = objMapper.convertValue(e, EnderecoDTO.class);
-                    endVolta.setTipo(TipoEndereco.ofTipo(e.getTipo()).toString());
+                    endVolta.setTipoEndereco(TipoEndereco.ofTipo(e.getTipo()).toString());
                     return endVolta;
                 })
                 .collect(Collectors.toList());

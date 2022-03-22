@@ -11,5 +11,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EnderecoDTO extends EnderecoCreateDTO {
     private Integer id_endereco;
-    private Integer id_pessoa;
 }

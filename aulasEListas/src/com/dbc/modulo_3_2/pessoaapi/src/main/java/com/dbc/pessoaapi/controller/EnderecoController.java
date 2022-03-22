@@ -23,10 +23,10 @@ public class EnderecoController {
         return enderecoService.listarEnderecos();
     }
 
-    @PostMapping("/{idPessoa}")
+    @PostMapping
     @Validated
-    public EnderecoDTO cadastrarEndereco(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO dto) throws RegraDeNegocioException {
-        return enderecoService.criarEndereco(idPessoa, dto);
+    public EnderecoDTO cadastrarEndereco(@Valid @RequestBody EnderecoCreateDTO dto) throws RegraDeNegocioException {
+        return enderecoService.criarEndereco(dto);
     }
 
     @PutMapping("/{idEndereco}")
