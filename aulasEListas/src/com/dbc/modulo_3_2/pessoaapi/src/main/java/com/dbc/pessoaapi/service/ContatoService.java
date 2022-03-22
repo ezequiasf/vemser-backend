@@ -22,20 +22,16 @@ public class ContatoService {
         ContatoEntity contatoInicial = objectMapper.convertValue(dto, ContatoEntity.class);
         contatoInicial.setId_pessoa(idPessoa);
         ContatoEntity contatoFinalizado = contatoRepository.save(contatoInicial);
-
-        return  objectMapper.convertValue(contatoFinalizado, ContatoDTO.class);
+        return objectMapper.convertValue(contatoFinalizado, ContatoDTO.class);
     }
 
     public ContatoDTO atualizarContato(Integer idContato, ContatoCreateDTO dto) throws RegraDeNegocioException {
-        //Set de informações
         ContatoEntity cont1 = contatoRepository
                 .findById(idContato)
                 .orElseThrow(() -> new RegraDeNegocioException("Contato não existe no banco."));
         cont1.setDescricao(dto.getDescricao());
         cont1.setNumero(dto.getNumero());
-
         ContatoEntity cont2 = contatoRepository.save(cont1);
-
         return objectMapper.convertValue(cont2, ContatoDTO.class);
     }
 
