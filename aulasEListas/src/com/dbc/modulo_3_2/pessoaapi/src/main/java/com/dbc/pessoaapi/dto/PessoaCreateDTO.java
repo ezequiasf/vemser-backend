@@ -3,10 +3,7 @@ package com.dbc.pessoaapi.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
@@ -25,5 +22,6 @@ public class PessoaCreateDTO {
     @ApiModelProperty(value = "CPF")
     private String cpf;
 
+    @Email
     private String email;
 }

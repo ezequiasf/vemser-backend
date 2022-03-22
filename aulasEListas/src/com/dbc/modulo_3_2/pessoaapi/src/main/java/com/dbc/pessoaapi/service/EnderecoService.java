@@ -28,7 +28,6 @@ public class EnderecoService {
         end.setTipo(validarTipo(dto.getTipoEndereco()));
         EnderecoEntity end2 = endRepo.save(end);
 
-
         EnderecoDTO endVolta = objMapper.convertValue(end2, EnderecoDTO.class);
         endVolta.setTipoEndereco(TipoEndereco.ofTipo(end2.getTipo()).toString());
         return endVolta;
