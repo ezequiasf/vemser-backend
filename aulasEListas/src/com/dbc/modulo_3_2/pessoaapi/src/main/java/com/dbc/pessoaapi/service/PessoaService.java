@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,22 @@ public class PessoaService {
     public void delete(Integer id) throws Exception {
         PessoaEntity p = pessoaRepository.findById(id).orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada!"));
         pessoaRepository.delete(p);
+    }
+
+    public List<PessoaDTO> findByNome (String nome){
+        return pessoaRepository.findByNomeContainsIgnoreCase(nome)
+                .stream().map(p-> objectMapper.convertValue(p,PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public PessoaDTO findByCpf (String cpf){
+        return objectMapper.convertValue(pessoaRepository.findByCpf(cpf), PessoaDTO.class);
+    }
+
+    public List<PessoaDTO> findDataNascimentoBetween (LocalDate inicio, LocalDate fim){
+        return pessoaRepository.findByDataNascimentoBetween(inicio, fim)
+                .stream().map(pessoaEntity -> objectMapper.convertValue(pessoaEntity, PessoaDTO.class))
+                .collect(Collectors.toList());
     }
 
 }

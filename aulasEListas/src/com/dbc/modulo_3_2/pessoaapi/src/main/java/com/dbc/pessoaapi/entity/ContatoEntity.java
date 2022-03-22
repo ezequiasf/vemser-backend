@@ -4,12 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "CONTATO")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity(name = "CONTATO")
 public class ContatoEntity {
 
     @Id
