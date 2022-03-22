@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.dto;
 
+import com.dbc.pessoaapi.entity.TipoContato;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class ContatoCreateDTO {
     @NotBlank
-    private String tipoContato;
+    private TipoContato tipoContato;
     @NotBlank
     @Size(min = 8, max = 11)
     private String numero;

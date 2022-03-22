@@ -3,8 +3,8 @@ package com.dbc.pessoaapi.entity;
 import java.util.Arrays;
 
 public enum TipoContato {
-    RESIDENCIAL(0),
-    COMERCIAL(1);
+    RESIDENCIAL(1),
+    COMERCIAL(2);
 
     private final Integer tipo;
 
