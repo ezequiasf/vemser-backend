@@ -1,8 +1,10 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "Endereco_Pessoa")
 @Getter
@@ -25,4 +27,7 @@ public class EnderecoEntity {
     private String cidade;
     private String estado;
     private String pais;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "enderecos")
+    private Set<PessoaEntity> pessoas;
 }

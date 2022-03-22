@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class ContatoEntity {
     @SequenceGenerator(name = "SEQ_CONTATO_GER", sequenceName = "SEQ_CONTATO", allocationSize = 1)
     private Integer id_contato;
 
-    @Column(name = "ID_PESSOA")
+    @Column(name = "ID_PESSOA", insertable = false, updatable = false)
     private Integer id_pessoa;
 
     @Enumerated(EnumType.ORDINAL)
@@ -29,4 +30,9 @@ public class ContatoEntity {
 
     @Column(name = "DESCRICAO")
     private String descricao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoa;
 }
