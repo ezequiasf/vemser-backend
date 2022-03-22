@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class ContatoCreateDTO {
     @NotBlank
-    private String tipo;
+    private String tipoContato;
     @NotBlank
-    @Size(min = 8, max = 10)
+    @Size(min = 8, max = 11)
     private String numero;
     @NotBlank
     @Size(min = 1, max = 50)

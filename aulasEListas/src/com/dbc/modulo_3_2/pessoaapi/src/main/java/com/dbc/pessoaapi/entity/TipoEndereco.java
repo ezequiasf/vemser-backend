@@ -3,8 +3,8 @@ package com.dbc.pessoaapi.entity;
 import java.util.Arrays;
 
 public enum TipoEndereco {
-    RESIDENCIAL(1),
-    COMERCIAL(2);
+    RESIDENCIAL(0),
+    COMERCIAL(1);
 
     private final Integer tipo;
 
