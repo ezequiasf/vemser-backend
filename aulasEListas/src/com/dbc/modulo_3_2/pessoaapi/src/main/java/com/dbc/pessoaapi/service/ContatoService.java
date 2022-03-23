@@ -3,6 +3,7 @@ package com.dbc.pessoaapi.service;
 import com.dbc.pessoaapi.dto.ContatoCreateDTO;
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.ContatoEntity;
+import com.dbc.pessoaapi.entity.TipoContato;
 import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +23,7 @@ public class ContatoService {
 
     public ContatoDTO criarContato(Integer idPessoa, ContatoCreateDTO dto) {
         ContatoEntity contatoInicial = objectMapper.convertValue(dto, ContatoEntity.class);
-//        contatoInicial.setId_pessoa(idPessoa);
+
         ContatoEntity contatoFinalizado = contatoRepository.save(contatoInicial);
         return objectMapper.convertValue(contatoFinalizado, ContatoDTO.class);
     }
@@ -47,6 +48,12 @@ public class ContatoService {
         ContatoEntity ent = contatoRepository.findById(idContato)
                 .orElseThrow(() -> new RegraDeNegocioException("O contato não foi encontrado na base de dados."));
         contatoRepository.delete(ent);
+    }
+
+    public List<ContatoDTO> findByTipoContato (TipoContato tipoContato){
+        return contatoRepository.findByTipoContato(tipoContato).stream()
+                .map(c-> objectMapper.convertValue(c, ContatoDTO.class))
+                .collect(Collectors.toList());
     }
 
 }

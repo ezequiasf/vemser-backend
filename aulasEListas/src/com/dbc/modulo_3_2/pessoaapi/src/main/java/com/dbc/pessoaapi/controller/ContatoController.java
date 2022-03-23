@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.ContatoCreateDTO;
 import com.dbc.pessoaapi.dto.ContatoDTO;
+import com.dbc.pessoaapi.entity.TipoContato;
 import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.service.ContatoService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class ContatoController {
 
     @PostMapping("/{idPessoa}")
     @Validated
-    public ContatoDTO cadastrarContato(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody ContatoCreateDTO dto) throws RegraDeNegocioException {
+    public ContatoDTO cadastrarContato(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody ContatoCreateDTO dto)  {
         return contatoService.criarContato(idPessoa, dto);
     }
 
@@ -40,5 +41,10 @@ public class ContatoController {
     @DeleteMapping("/{idContato}")
     public void deletarContato(@PathVariable("idContato") Integer idContato) throws RegraDeNegocioException {
         contatoService.deletarContato(idContato);
+    }
+
+    @GetMapping("/findByTipoContato")
+    public List<ContatoDTO> findByTipoContato (@RequestParam TipoContato tipoContato){
+        return contatoService.findByTipoContato(tipoContato);
     }
 }

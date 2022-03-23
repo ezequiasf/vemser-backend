@@ -103,4 +103,16 @@ public class PessoaService {
         }).collect(Collectors.toList());
     }
 
+    public List<PessoaDTO> findPessoaBetweenDatas (LocalDate data1, LocalDate data2){
+        return pessoaRepository.findByBetweenDatas(data1, data2).stream()
+                .map(p-> objectMapper.convertValue(p, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<PessoaDTO> findPessoaComEndereco (){
+        return pessoaRepository.findPessoasComEndereco().stream()
+                .map(pEntity-> objectMapper.convertValue(pEntity, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

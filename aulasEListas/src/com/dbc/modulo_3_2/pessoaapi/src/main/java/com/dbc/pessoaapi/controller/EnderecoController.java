@@ -25,7 +25,7 @@ public class EnderecoController {
 
     @PostMapping
     @Validated
-    public EnderecoDTO cadastrarEndereco(@Valid @RequestBody EnderecoCreateDTO dto) throws RegraDeNegocioException {
+    public EnderecoDTO cadastrarEndereco(@Valid @RequestBody EnderecoCreateDTO dto)  {
         return enderecoService.criarEndereco(dto);
     }
 
@@ -37,6 +37,16 @@ public class EnderecoController {
     @DeleteMapping("/{idEndereco}")
     public void deletarEndereco(@PathVariable("idEndereco") Integer idEndereco) throws RegraDeNegocioException {
         enderecoService.deletarEndereco(idEndereco);
+    }
+
+    @GetMapping("/findByPais")
+    public List<EnderecoDTO> findByPais (@RequestParam String pais){
+        return enderecoService.findEnderecoByPais(pais);
+    }
+
+    @GetMapping("/findByIdPessoa")
+    public List<EnderecoDTO> findByIdPessoa (@RequestParam Integer idPessoa){
+        return enderecoService.findEnderecoByIdPessoa(idPessoa);
     }
 
 }

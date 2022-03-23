@@ -85,4 +85,15 @@ public class PessoaController {
         return pessoaService.findEnderecoByIdPessoa(idPessoa);
     }
 
+    @GetMapping("/findPessoaBetweenDatas")
+    public List<PessoaDTO> findByBetweenDatas (@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate data1
+            , @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate data2){
+        return pessoaService.findPessoaBetweenDatas(data1, data2);
+    }
+
+    @GetMapping("/findPessoasComEndereco")
+    public List<PessoaDTO> findPessoasComEndereco (){
+        return pessoaService.findPessoaComEndereco();
+    }
+
 }

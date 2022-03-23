@@ -50,4 +50,16 @@ public class EnderecoService {
                 .orElseThrow(() -> new RegraDeNegocioException("O endereço não foi encontrado na base de dados."));
         endRepo.delete(ent);
     }
+
+    public List<EnderecoDTO> findEnderecoByPais (String pais){
+        return endRepo.findEnderecosPorPais(pais).stream()
+                .map(eEntity-> objMapper.convertValue(eEntity, EnderecoDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<EnderecoDTO> findEnderecoByIdPessoa (Integer idPessoa){
+        return endRepo.findEnderecoByIdPessoa(idPessoa).stream()
+                .map(eEntity -> objMapper.convertValue(eEntity, EnderecoDTO.class))
+                .collect(Collectors.toList());
+    }
 }

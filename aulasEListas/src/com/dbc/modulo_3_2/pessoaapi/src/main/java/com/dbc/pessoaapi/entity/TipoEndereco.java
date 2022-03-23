@@ -1,5 +1,7 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Arrays;
 
 public enum TipoEndereco {
@@ -16,6 +18,7 @@ public enum TipoEndereco {
         return tipo;
     }
 
+    @JsonValue
     public static TipoEndereco ofTipo(Integer tipo){
         return Arrays.stream(TipoEndereco.values())
                 .filter(tp -> tp.getTipo().equals(tipo))
