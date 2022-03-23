@@ -18,6 +18,7 @@ public class ContatoEntity {
     @SequenceGenerator(name = "SEQ_CONTATO_GER", sequenceName = "SEQ_CONTATO", allocationSize = 1)
     private Integer id_contato;
 
+    //Fins de consulta
     @Column(name = "ID_PESSOA", insertable = false, updatable = false)
     private Integer id_pessoa;
 

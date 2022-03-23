@@ -103,6 +103,33 @@ public class PessoaService {
         }).collect(Collectors.toList());
     }
 
+    public List<PessoaContatoEnderecoDTO> findPessoaContatoEnderecoById (Integer idPessoa){
+        if (idPessoa != null) {
+            return pessoaRepository.findById(idPessoa).stream()
+                    .map(pEntity -> {
+                        PessoaContatoEnderecoDTO pce = objectMapper.convertValue(pEntity, PessoaContatoEnderecoDTO.class);
+                        pce.setEnderecoDTOS(pEntity.getEnderecos().stream()
+                                .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
+                                .collect(Collectors.toList()));
+                        pce.setContatos(pEntity.getContatos().stream()
+                                .map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class))
+                                .collect(Collectors.toList()));
+                        return pce;
+                    }).collect(Collectors.toList());
+        }
+        return pessoaRepository.findAll().stream()
+                .map(pEntity -> {
+                    PessoaContatoEnderecoDTO pce = objectMapper.convertValue(pEntity, PessoaContatoEnderecoDTO.class);
+                    pce.setEnderecoDTOS(pEntity.getEnderecos().stream()
+                            .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
+                            .collect(Collectors.toList()));
+                    pce.setContatos(pEntity.getContatos().stream()
+                            .map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class))
+                            .collect(Collectors.toList()));
+                    return pce;
+                }).collect(Collectors.toList());
+    }
+
     public List<PessoaDTO> findPessoaBetweenDatas (LocalDate data1, LocalDate data2){
         return pessoaRepository.findByBetweenDatas(data1, data2).stream()
                 .map(p-> objectMapper.convertValue(p, PessoaDTO.class))

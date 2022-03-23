@@ -1,9 +1,6 @@
 package com.dbc.pessoaapi.controller;
 
-import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
-import com.dbc.pessoaapi.dto.PessoaComEnderecoDTO;
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
-import com.dbc.pessoaapi.dto.PessoaDTO;
+import com.dbc.pessoaapi.dto.*;
 import com.dbc.pessoaapi.service.PessoaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -99,5 +96,10 @@ public class PessoaController {
     @GetMapping("/findPessoasSemEndereco")
     public List<PessoaDTO> findPessoasSemEndereco (){
         return pessoaService.findPessoaSemEndereco();
+    }
+
+    @GetMapping("/findPessoaContatoEnderecoById")
+    public List<PessoaContatoEnderecoDTO> findPessoaContatoEnderecoById (@RequestParam(required = false) Integer idPessoa){
+        return pessoaService.findPessoaContatoEnderecoById(idPessoa);
     }
 }
