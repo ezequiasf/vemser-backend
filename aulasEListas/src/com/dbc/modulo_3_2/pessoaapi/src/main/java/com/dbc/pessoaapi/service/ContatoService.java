@@ -7,6 +7,7 @@ import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +15,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ContatoService {
     private final ContatoRepository contatoRepository;
     private final ObjectMapper objectMapper;
 
     public ContatoDTO criarContato(Integer idPessoa, ContatoCreateDTO dto) {
         ContatoEntity contatoInicial = objectMapper.convertValue(dto, ContatoEntity.class);
-        contatoInicial.setId_pessoa(idPessoa);
+//        contatoInicial.setId_pessoa(idPessoa);
         ContatoEntity contatoFinalizado = contatoRepository.save(contatoInicial);
         return objectMapper.convertValue(contatoFinalizado, ContatoDTO.class);
     }

@@ -5,6 +5,7 @@ import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.service.ContatoService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/contato")
 @RequiredArgsConstructor
+@Slf4j
 public class ContatoController {
 
     private final ContatoService contatoService;
