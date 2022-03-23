@@ -1,5 +1,7 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
+import com.dbc.pessoaapi.dto.PessoaComEnderecoDTO;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.service.PessoaService;
@@ -71,6 +73,16 @@ public class PessoaController {
                                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                         LocalDate dataFim) {
         return pessoaService.findDataNascimentoBetween(dataInicio, dataFim);
+    }
+
+    @GetMapping("/findByIdPessoaContato")
+    public List<PessoaComContatoDTO> findByIdPessoaContato (@RequestParam(required = false) Integer idPessoa){
+        return pessoaService.findContatoPessoaOuTodas(idPessoa);
+    }
+
+    @GetMapping("/findByIdPessoaEndereco")
+    public List<PessoaComEnderecoDTO> findByIdPessoaEndereco (@RequestParam(required = false)Integer idPessoa){
+        return pessoaService.findEnderecoByIdPessoa(idPessoa);
     }
 
 }
