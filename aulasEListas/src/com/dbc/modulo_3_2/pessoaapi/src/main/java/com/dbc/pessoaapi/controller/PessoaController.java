@@ -96,4 +96,8 @@ public class PessoaController {
         return pessoaService.findPessoaComEndereco();
     }
 
+    @GetMapping("/findPessoasSemEndereco")
+    public List<PessoaDTO> findPessoasSemEndereco (){
+        return pessoaService.findPessoaSemEndereco();
+    }
 }

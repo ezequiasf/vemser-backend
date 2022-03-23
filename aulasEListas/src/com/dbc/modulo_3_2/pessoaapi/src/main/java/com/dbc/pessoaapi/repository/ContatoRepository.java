@@ -13,4 +13,7 @@ public interface ContatoRepository extends JpaRepository<ContatoEntity, Integer>
 
     @Query("select c from CONTATO c where c.tipoContato = :tipoContato")
     List<ContatoEntity> findByTipoContato (TipoContato tipoContato);
+
+    @Query(value = "SELECT * FROM CONTATO C WHERE C.ID_PESSOA = :idPessoa", nativeQuery = true)
+    List<ContatoEntity> findContatoByIdPessoa (Integer idPessoa);
 }

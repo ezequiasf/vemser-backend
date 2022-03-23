@@ -17,4 +17,10 @@ public interface EnderecoRepository extends JpaRepository<EnderecoEntity, Intege
             "where p.idPessoa = :idPessoa")
     List<EnderecoEntity> findEnderecoByIdPessoa (Integer idPessoa);
 
+    @Query(value = "SELECT * FROM Endereco_Pessoa EP " +
+            "WHERE EP.cidade = :cidade OR EP.PAIS = :pais", nativeQuery = true)
+    List<EnderecoEntity> findEnderecosByCidadeOuPais (String cidade, String pais);
+
+    @Query(value = "SELECT * FROM Endereco_Pessoa EP WHERE EP.complemento IS NULL", nativeQuery = true)
+    List<EnderecoEntity> findEnderecoSemComplemento ();
 }

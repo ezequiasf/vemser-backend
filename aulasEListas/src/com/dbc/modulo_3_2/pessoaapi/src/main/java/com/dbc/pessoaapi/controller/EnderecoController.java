@@ -49,4 +49,14 @@ public class EnderecoController {
         return enderecoService.findEnderecoByIdPessoa(idPessoa);
     }
 
+    @GetMapping("/findByCidadeOuPessoa")
+    public List<EnderecoDTO> findByCidadeOuPais (@RequestParam String cidade, @RequestParam String pais){
+        return enderecoService.findEnderecosByCidadeOuPais(cidade, pais);
+    }
+
+    @GetMapping("/findEnderecoSemComplemento")
+    public List<EnderecoDTO> findEnderecoSemComplemento (){
+        return enderecoService.findEnderecoSemComplemento();
+    }
+
 }

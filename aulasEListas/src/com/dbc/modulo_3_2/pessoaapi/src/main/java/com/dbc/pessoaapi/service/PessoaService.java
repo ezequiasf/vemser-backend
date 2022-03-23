@@ -116,6 +116,12 @@ public class PessoaService {
                 .collect(Collectors.toList());
     }
 
+    public List<PessoaDTO> findPessoaSemEndereco (){
+        return pessoaRepository.findPessoasSemEndereco().stream()
+                .map(p-> objectMapper.convertValue(p, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
     public PessoaEntity findById (Integer idPessoa) throws RegraDeNegocioException {
         return pessoaRepository.findById(idPessoa)
                 .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada!"));

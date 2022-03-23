@@ -47,4 +47,9 @@ public class ContatoController {
     public List<ContatoDTO> findByTipoContato (@RequestParam TipoContato tipoContato){
         return contatoService.findByTipoContato(tipoContato);
     }
+
+    @GetMapping("/findContatoPessoaNative")
+    public List<ContatoDTO> findContatoByIdPessoa (@RequestParam Integer idPessoa){
+        return contatoService.findContatoByIdPessoa(idPessoa);
+    }
 }

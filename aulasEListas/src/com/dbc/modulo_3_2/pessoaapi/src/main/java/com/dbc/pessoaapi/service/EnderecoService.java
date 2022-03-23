@@ -70,4 +70,16 @@ public class EnderecoService {
                 .map(eEntity -> objMapper.convertValue(eEntity, EnderecoDTO.class))
                 .collect(Collectors.toList());
     }
+
+    public List<EnderecoDTO> findEnderecosByCidadeOuPais (String cidade, String pais){
+        return endRepo.findEnderecosByCidadeOuPais(cidade, pais).stream()
+                .map(e-> objMapper.convertValue(e, EnderecoDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<EnderecoDTO> findEnderecoSemComplemento (){
+        return endRepo.findEnderecoSemComplemento().stream()
+                .map(e-> objMapper.convertValue(e, EnderecoDTO.class))
+                .collect(Collectors.toList());
+    }
 }

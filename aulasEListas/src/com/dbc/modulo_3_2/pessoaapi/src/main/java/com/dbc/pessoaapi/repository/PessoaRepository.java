@@ -19,4 +19,10 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
 
     @Query("select p from PESSOA p join fetch p.enderecos pe where p.enderecos.size>0")
     List<PessoaEntity> findPessoasComEndereco ();
+
+    @Query(value = "SELECT * FROM PESSOA P " +
+            "LEFT JOIN PESSOA_X_PESSOA_ENDERECO PE ON " +
+            "P.ID_PESSOA = PE.ID_PESSOA " +
+            "WHERE PE.ID_PESSOA IS NULL ", nativeQuery = true)
+    List<PessoaEntity> findPessoasSemEndereco ();
 }

@@ -64,4 +64,10 @@ public class ContatoService {
                 .collect(Collectors.toList());
     }
 
+    public List<ContatoDTO> findContatoByIdPessoa (Integer idPessoa){
+        return contatoRepository.findContatoByIdPessoa(idPessoa).stream()
+                .map(c-> objectMapper.convertValue(c, ContatoDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }
