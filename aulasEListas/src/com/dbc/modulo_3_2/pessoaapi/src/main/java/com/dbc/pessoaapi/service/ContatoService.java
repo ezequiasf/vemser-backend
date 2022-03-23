@@ -3,6 +3,7 @@ package com.dbc.pessoaapi.service;
 import com.dbc.pessoaapi.dto.ContatoCreateDTO;
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.ContatoEntity;
+import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.entity.TipoContato;
 import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.ContatoRepository;
@@ -19,11 +20,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ContatoService {
     private final ContatoRepository contatoRepository;
+    private final PessoaService pessoaService;
     private final ObjectMapper objectMapper;
 
-    public ContatoDTO criarContato(Integer idPessoa, ContatoCreateDTO dto) {
+    public ContatoDTO criarContato(Integer idPessoa, ContatoCreateDTO dto) throws RegraDeNegocioException {
+        //Converter DTO para contato entity (Para salvar)
         ContatoEntity contatoInicial = objectMapper.convertValue(dto, ContatoEntity.class);
 
+        //Buscando a pessoa para setar no contato
+        PessoaEntity pessoaEntity = pessoaService.findById(idPessoa);
+        contatoInicial.setPessoa(pessoaEntity);
+
+        //Salvando e retornando um DTO
         ContatoEntity contatoFinalizado = contatoRepository.save(contatoInicial);
         return objectMapper.convertValue(contatoFinalizado, ContatoDTO.class);
     }

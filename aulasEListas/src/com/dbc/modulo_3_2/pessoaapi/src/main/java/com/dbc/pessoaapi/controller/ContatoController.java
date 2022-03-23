@@ -28,7 +28,7 @@ public class ContatoController {
 
     @PostMapping("/{idPessoa}")
     @Validated
-    public ContatoDTO cadastrarContato(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody ContatoCreateDTO dto)  {
+    public ContatoDTO cadastrarContato(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody ContatoCreateDTO dto) throws RegraDeNegocioException {
         return contatoService.criarContato(idPessoa, dto);
     }
 

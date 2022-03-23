@@ -3,6 +3,7 @@ package com.dbc.pessoaapi.service;
 import com.dbc.pessoaapi.dto.EnderecoCreateDTO;
 import com.dbc.pessoaapi.dto.EnderecoDTO;
 import com.dbc.pessoaapi.entity.EnderecoEntity;
+import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +18,16 @@ import java.util.stream.Collectors;
 public class EnderecoService {
     private final ObjectMapper objMapper;
     private final EnderecoRepository endRepo;
+    private final PessoaService pService;
 
-    public EnderecoDTO criarEndereco(EnderecoCreateDTO dto) {
+    public EnderecoDTO criarEndereco(Integer idPessoa, EnderecoCreateDTO dto) throws RegraDeNegocioException {
         EnderecoEntity end = objMapper.convertValue(dto, EnderecoEntity.class);
+
+        //Busca da pessoa para mapeamento
+        PessoaEntity pEntity = pService.findById(idPessoa);
+        end.getPessoas().add(pEntity);
+
+        //Persistência e retorno
         EnderecoEntity end2 = endRepo.save(end);
         return objMapper.convertValue(end2, EnderecoDTO.class);
     }
