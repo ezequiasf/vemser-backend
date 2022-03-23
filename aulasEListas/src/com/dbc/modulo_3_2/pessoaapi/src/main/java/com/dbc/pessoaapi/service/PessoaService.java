@@ -67,67 +67,34 @@ public class PessoaService {
         if (idPessoa != null) {
             return pessoaRepository.findById(idPessoa)
                     .stream()
-                    .map(p -> {
-                        PessoaComContatoDTO pc = objectMapper.convertValue(p, PessoaComContatoDTO.class);
-                        pc.setContatos(p.getContatos().stream()
-                                .map(contatos -> objectMapper.convertValue(contatos, ContatoDTO.class))
-                                .collect(Collectors.toList()));
-                        return pc;
-                    }).collect(Collectors.toList());
+                    .map(pEntity -> (PessoaComContatoDTO) constroiDTO(pEntity, new PessoaComContatoDTO()))
+                    .collect(Collectors.toList());
         }
         return pessoaRepository.findAll().stream()
-                .map(p -> {
-                    PessoaComContatoDTO pc = objectMapper.convertValue(p, PessoaComContatoDTO.class);
-                    pc.setContatos(p.getContatos().stream().map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class)).collect(Collectors.toList()));
-                    return pc;
-                }).collect(Collectors.toList());
+                .map(pEntity -> (PessoaComContatoDTO) constroiDTO(pEntity, new PessoaComContatoDTO()))
+                .collect(Collectors.toList());
     }
 
     public List<PessoaComEnderecoDTO> findEnderecoByIdPessoa(Integer idPessoa) {
         if (idPessoa != null) {
             return pessoaRepository.findById(idPessoa).stream()
-                    .map(pEntity -> {
-                        PessoaComEnderecoDTO pe = objectMapper.convertValue(pEntity, PessoaComEnderecoDTO.class);
-                        pe.setEnderecos(pEntity.getEnderecos().stream()
-                                .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
-                                .collect(Collectors.toList()));
-                        return pe;
-                    }).collect(Collectors.toList());
+                    .map(pEntity -> (PessoaComEnderecoDTO) constroiDTO(pEntity, new PessoaComEnderecoDTO()))
+                    .collect(Collectors.toList());
         }
-        return pessoaRepository.findAll().stream().map(pEntity -> {
-            PessoaComEnderecoDTO pe = objectMapper.convertValue(pEntity, PessoaComEnderecoDTO.class);
-            pe.setEnderecos(pEntity.getEnderecos().stream()
-                    .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
-                    .collect(Collectors.toList()));
-            return pe;
-        }).collect(Collectors.toList());
+        return pessoaRepository.findAll().stream()
+                .map(pEntity -> (PessoaComEnderecoDTO) constroiDTO(pEntity, new PessoaComEnderecoDTO()))
+                .collect(Collectors.toList());
     }
 
     public List<PessoaContatoEnderecoDTO> findPessoaContatoEnderecoById (Integer idPessoa){
         if (idPessoa != null) {
             return pessoaRepository.findById(idPessoa).stream()
-                    .map(pEntity -> {
-                        PessoaContatoEnderecoDTO pce = objectMapper.convertValue(pEntity, PessoaContatoEnderecoDTO.class);
-                        pce.setEnderecoDTOS(pEntity.getEnderecos().stream()
-                                .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
-                                .collect(Collectors.toList()));
-                        pce.setContatos(pEntity.getContatos().stream()
-                                .map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class))
-                                .collect(Collectors.toList()));
-                        return pce;
-                    }).collect(Collectors.toList());
+                    .map(pEntity -> (PessoaContatoEnderecoDTO) constroiDTO(pEntity, new PessoaContatoEnderecoDTO()))
+                    .collect(Collectors.toList());
         }
         return pessoaRepository.findAll().stream()
-                .map(pEntity -> {
-                    PessoaContatoEnderecoDTO pce = objectMapper.convertValue(pEntity, PessoaContatoEnderecoDTO.class);
-                    pce.setEnderecoDTOS(pEntity.getEnderecos().stream()
-                            .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
-                            .collect(Collectors.toList()));
-                    pce.setContatos(pEntity.getContatos().stream()
-                            .map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class))
-                            .collect(Collectors.toList()));
-                    return pce;
-                }).collect(Collectors.toList());
+                .map(pEntity -> (PessoaContatoEnderecoDTO) constroiDTO(pEntity, new PessoaContatoEnderecoDTO()))
+                .collect(Collectors.toList());
     }
 
     public List<PessoaDTO> findPessoaBetweenDatas (LocalDate data1, LocalDate data2){
@@ -152,6 +119,34 @@ public class PessoaService {
     public PessoaEntity findById (Integer idPessoa) throws RegraDeNegocioException {
         return pessoaRepository.findById(idPessoa)
                 .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada!"));
+    }
+
+    private PessoaCreateDTO constroiDTO (PessoaEntity pEntity, PessoaCreateDTO dto){
+        if (dto instanceof PessoaComContatoDTO){
+            PessoaComContatoDTO pc = objectMapper.convertValue(pEntity, PessoaComContatoDTO.class);
+            pc.setContatos(findContatosEntity(pEntity));
+            return pc;
+        }else if (dto instanceof PessoaComEnderecoDTO){
+            PessoaComEnderecoDTO pe = objectMapper.convertValue(pEntity, PessoaComEnderecoDTO.class);
+            pe.setEnderecos(findEnderecosEntity(pEntity));
+            return pe;
+        }
+        PessoaContatoEnderecoDTO pce = objectMapper.convertValue(pEntity, PessoaContatoEnderecoDTO.class);
+        pce.setEnderecoDTOS(findEnderecosEntity(pEntity));
+        pce.setContatos(findContatosEntity(pEntity));
+        return pce;
+    }
+
+    private List<EnderecoDTO> findEnderecosEntity (PessoaEntity pessoaEntity){
+        return pessoaEntity.getEnderecos().stream()
+                .map(eEntity -> objectMapper.convertValue(eEntity, EnderecoDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    private List<ContatoDTO> findContatosEntity (PessoaEntity pessoaEntity){
+        return pessoaEntity.getContatos().stream()
+                .map(cEntity -> objectMapper.convertValue(cEntity, ContatoDTO.class))
+                .collect(Collectors.toList());
     }
 
 }

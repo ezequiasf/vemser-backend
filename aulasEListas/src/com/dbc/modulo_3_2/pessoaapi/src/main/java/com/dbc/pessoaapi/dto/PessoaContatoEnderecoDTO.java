@@ -11,6 +11,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaContatoEnderecoDTO extends PessoaComContatoDTO{
+public class PessoaContatoEnderecoDTO extends PessoaCreateDTO{
+    private Integer idPessoa;
+    private List<ContatoDTO> contatos;
     private List<EnderecoDTO> enderecoDTOS;
 }
