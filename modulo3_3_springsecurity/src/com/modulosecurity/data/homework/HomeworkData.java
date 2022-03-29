@@ -16,10 +16,12 @@ public class HomeworkData
     {
 //        exercicio1();
 //        exercicio2();
-//        exercicio3();
+        exercicio3();
 //        exercicio4();
 //        Exercicio5.formatadorApp();
 //        exercicio6();
+//        clock(LocalDateTime.now().atZone(ZoneId.of("Brazil/East")));
+//        clock(ZonedDateTime.now(ZoneId.of("Japan")));
     }
 
     public static void exercicio1()
@@ -58,6 +60,7 @@ public class HomeworkData
                 , periodo.getMonths(), periodo.getDays());
     }
 
+    //Exercicio pronto!
     static void exercicio3()
     {
         LocalTime horaBrasilEast = LocalTime.now(ZoneId.of("Brazil/East"));
@@ -69,6 +72,28 @@ public class HomeworkData
         System.out.printf("Hora nas seguintes regiões:%nBrasil:\t%s%nAustrália(Sidney):\t%s%n" +
                         "Japão:\t%s%nRússia(Moscow):\t%s%nDubai:\t%s%nUS(North Dakota):\t%s", horaBrasilEast,
                 horaAustraliaSidney, horaJapao, horaRussiaMoscow, horaDubai, horaUSDakota);
+    }
+
+    //Tentativa de implementação!
+    static void exercicio3Teste()
+    {
+        Runnable thread1 = ()->{
+            clock(ZonedDateTime.now(ZoneId.of("Brazil/East")));
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+        Runnable thread2 = ()-> clock(ZonedDateTime.now(ZoneId.of("Australia/Sydney")));
+        Runnable thread3 = ()->clock(ZonedDateTime.now(ZoneId.of("Japan")));
+        Runnable thread4 = ()->clock(ZonedDateTime.now(ZoneId.of("Asia/Dubai")));
+        Runnable thread5 = ()->clock(ZonedDateTime.now(ZoneId.of("America/North_Dakota/Center")));
+        Runnable thread6 = ()->clock(ZonedDateTime.now(ZoneId.of("Europe/Moscow")));
+        Thread t1 = new Thread(thread1);
+        t1.start();
+        new Thread(thread2).start();
+        new Thread(thread3).start();
     }
 
     public static void exercicio4()
@@ -117,5 +142,25 @@ public class HomeworkData
         System.out.printf("Faltam %d anos, %d meses, %d dias, %d horas, %d minutos, %d segundos para o " +
                         "épico show de wesley safadão!!", periodo.getYears(), periodo.getMonths()
                 , periodo.getDays(), hour, minutes, seconds);
+    }
+
+    private synchronized static void clock (ZonedDateTime localTime){
+        String zone  = ZoneId.from(localTime)
+                .getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
+        int seconds = localTime.getSecond();
+        while (true)
+        {
+            try {
+                if (seconds > 59){
+                    localTime = localTime.plusMinutes(1);
+                    seconds = 0;
+                }
+                System.out.printf("%s == %d:%d:%d\r",zone, localTime.getHour(), localTime.getMinute()
+                        , seconds++);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
