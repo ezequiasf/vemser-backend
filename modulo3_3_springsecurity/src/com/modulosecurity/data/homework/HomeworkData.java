@@ -7,25 +7,21 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class HomeworkData
-{
+public class HomeworkData {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 //        exercicio1();
 //        exercicio2();
-        exercicio3();
+//        exercicio3();
+//        exercicio3Clock();
 //        exercicio4();
 //        Exercicio5.formatadorApp();
 //        exercicio6();
-//        clock(LocalDateTime.now().atZone(ZoneId.of("Brazil/East")));
-//        clock(ZonedDateTime.now(ZoneId.of("Japan")));
     }
 
-    public static void exercicio1()
-    {
+    public static void exercicio1() {
         LocalDate hoje = LocalDate.now();
         System.out.println("Informe o dia do seu aniversário: ");
         int diaAniversario = sc.nextInt();
@@ -33,13 +29,13 @@ public class HomeworkData
         int mesAniversario = sc.nextInt();
         int anoConsideracao = hoje.getYear();
         int mesHoje = hoje.getMonth().getValue();
-        if (!(mesHoje<mesAniversario)){
-            if (mesHoje == mesAniversario){
-                if (hoje.getDayOfMonth()>diaAniversario){
-                    anoConsideracao +=1;
+        if (!(mesHoje < mesAniversario)) {
+            if (mesHoje == mesAniversario) {
+                if (hoje.getDayOfMonth() > diaAniversario) {
+                    anoConsideracao += 1;
                 }
-            }else{
-                anoConsideracao +=1;
+            } else {
+                anoConsideracao += 1;
             }
         }
         LocalDate aniversarioUsuario = LocalDate.of(anoConsideracao, mesAniversario, diaAniversario);
@@ -48,8 +44,7 @@ public class HomeworkData
                 , Math.abs(distancia.getMonths()), Math.abs(distancia.getDays()));
     }
 
-    public static void exercicio2()
-    {
+    public static void exercicio2() {
         System.out.println("|Calculadora de períodos|");
         System.out.println("Informe uma data inicial no seguinte formato (ano-mes-dia):");
         LocalDate dataInicial = LocalDate.parse(sc.nextLine());
@@ -60,9 +55,7 @@ public class HomeworkData
                 , periodo.getMonths(), periodo.getDays());
     }
 
-    //Exercicio pronto!
-    static void exercicio3()
-    {
+    static void exercicio3() {
         LocalTime horaBrasilEast = LocalTime.now(ZoneId.of("Brazil/East"));
         LocalTime horaAustraliaSidney = LocalTime.now(ZoneId.of("Australia/Sydney"));
         LocalTime horaJapao = LocalTime.now(ZoneId.of("Japan"));
@@ -74,30 +67,16 @@ public class HomeworkData
                 horaAustraliaSidney, horaJapao, horaRussiaMoscow, horaDubai, horaUSDakota);
     }
 
-    //Tentativa de implementação!
-    static void exercicio3Teste()
-    {
-        Runnable thread1 = ()->{
-            clock(ZonedDateTime.now(ZoneId.of("Brazil/East")));
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        };
-        Runnable thread2 = ()-> clock(ZonedDateTime.now(ZoneId.of("Australia/Sydney")));
-        Runnable thread3 = ()->clock(ZonedDateTime.now(ZoneId.of("Japan")));
-        Runnable thread4 = ()->clock(ZonedDateTime.now(ZoneId.of("Asia/Dubai")));
-        Runnable thread5 = ()->clock(ZonedDateTime.now(ZoneId.of("America/North_Dakota/Center")));
-        Runnable thread6 = ()->clock(ZonedDateTime.now(ZoneId.of("Europe/Moscow")));
-        Thread t1 = new Thread(thread1);
-        t1.start();
-        new Thread(thread2).start();
-        new Thread(thread3).start();
+   static void exercicio3Clock() {
+        String[] zones = {"Brazil/East", "Japan","Europe/London", "Asia/Dubai"
+                , "America/North_Dakota/Center", "Europe/Moscow"};
+       System.out.println("Qual horário do mundo você deseja ver? 0-Brasil, 1-Japão, 2-Londres, 3-Dubai," +
+               "4-Estados unidos, 5-Rússia(Moscow)");
+       int zona = sc.nextInt();
+       clock(ZonedDateTime.now(ZoneId.of(zones[zona])));
     }
 
-    public static void exercicio4()
-    {
+    public static void exercicio4() {
         LocalDateTime dataHoraAgora = LocalDateTime.now();
         LocalDateTime dataPosterior = dataHoraAgora.plusDays(15).plusHours(10);
         System.out.printf("Dia da semana daqui a 15 dias: %s%nDia corrido no ano: %d"
@@ -106,10 +85,8 @@ public class HomeworkData
                 , dataPosterior.getDayOfYear());
     }
 
-    static class Exercicio5
-    {
-        static void formatadorApp()
-        {
+    static class Exercicio5 {
+        static void formatadorApp() {
             System.out.println("Formatador>>>>>");
             System.out.println("Insira uma data: formato (yyyy-MM-dd)");
             LocalDate dataInicial = LocalDate.parse(sc.nextLine());
@@ -120,15 +97,13 @@ public class HomeworkData
                     , brasil, franca, us);
         }
 
-        String formatadorData(LocalDate data, Locale local)
-        {
+        String formatadorData(LocalDate data, Locale local) {
             return data.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
                     .withLocale(local));
         }
     }
 
-    public static void exercicio6()
-    {
+    public static void exercicio6() {
         ZonedDateTime dateTimeBrasil = LocalDateTime.now()
                 .atZone(ZoneId.of("Brazil/East"));
         ZonedDateTime dateTimeLondon = LocalDateTime.of(2024, 9, 14, 18, 30)
@@ -144,18 +119,17 @@ public class HomeworkData
                 , periodo.getDays(), hour, minutes, seconds);
     }
 
-    private synchronized static void clock (ZonedDateTime localTime){
-        String zone  = ZoneId.from(localTime)
+    static void clock(ZonedDateTime localTime) {
+        String zone = ZoneId.from(localTime)
                 .getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
         int seconds = localTime.getSecond();
-        while (true)
-        {
+        while (true) {
             try {
-                if (seconds > 59){
+                if (seconds > 59) {
                     localTime = localTime.plusMinutes(1);
                     seconds = 0;
                 }
-                System.out.printf("%s == %d:%d:%d\r",zone, localTime.getHour(), localTime.getMinute()
+                System.out.printf("%s == %d:%d:%d\r", zone, localTime.getHour(), localTime.getMinute()
                         , seconds++);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
