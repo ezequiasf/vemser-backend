@@ -2,30 +2,64 @@ package com.dbc.pessoaapi.security;
 
 import com.dbc.pessoaapi.entity.UsuarioEntity;
 import com.dbc.pessoaapi.service.UsuarioService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TokenService {
-    private static final String CARACTER_SEPARACAO = ";";
-    private final UsuarioService usuarioService;
+    private static final String PREFIX = "Bearer ";
+    private static final String HEADER_AUTHORIZATION = "Authorization";
 
-    public String getToken(UsuarioEntity usuarioEntity){
-        String tokenTexto = usuarioEntity.getLogin() + CARACTER_SEPARACAO + usuarioEntity.getSenha();
-        return Base64.getEncoder().encodeToString(tokenTexto.getBytes());
+    @Value("${jwt.expiration}")
+    private String expiration;
+
+    @Value("${jwt.secret}")
+    private String secret;
+
+    public String getToken(Authentication authentication) {
+        UsuarioEntity usuario = (UsuarioEntity) authentication.getPrincipal();
+
+        Date now = new Date();
+        Date exp = new Date(now.getTime() + Long.parseLong(expiration));
+
+        String token = Jwts.builder()
+                .setIssuer("pessoa-api")
+                .setSubject(usuario.getIdUsuario().toString())
+                .setIssuedAt(now)
+                .setExpiration(exp)
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+
+        return PREFIX + token;
     }
 
-    public Optional<UsuarioEntity> isValid(String token){
-        if(token == null){
-            return Optional.empty();
+    public Authentication getAuthentication(HttpServletRequest request) {
+        String tokenBearer = request.getHeader(HEADER_AUTHORIZATION); // Bearer hfUIfs
+
+        if (tokenBearer != null) {
+            String token = tokenBearer.replace(PREFIX, "");
+            String user = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
+
+            if (user != null) {
+                return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+            }
         }
-        byte[] decodedTokenBytes = Base64.getUrlDecoder().decode(token); // bWFpY29uOzEyMw==
-        String decodedTokenString = new String(decodedTokenBytes); //maicon;123
-        String[] usuarioESenha = decodedTokenString.split(CARACTER_SEPARACAO);/// ['maicon', '123']
-        return usuarioService.findByLoginAndSenha(usuarioESenha[0] /*maicon*/, usuarioESenha[1] /*123*/);
+        return null;
     }
 }
