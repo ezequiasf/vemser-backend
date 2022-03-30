@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "011e4acb-deba-4203-bf67-febbf147485c",
+		"name": "Homework2 - Contato e pessoa api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "pegarPessoas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoa/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarPessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nome\": \"Carlos sales\",\n        \"nascimento\": \"2002-11-02\",\n        \"cpf\": \"17843263847\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoa/cadastro",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizarPessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nome\": \"Rafael\",\n        \"nascimento\": \"2000-10-10\",\n        \"cpf\": \"12343456556\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoa/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletarPessoa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoa/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "encontrarPorNome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoa/findByName?nome=Marcos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"findByName"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Marcos"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contato",
+			"item": [
+				{
+					"name": "todosContatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarContato",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"idPessoa\": 2,\n        \"tipoContato\": \"RESIDENCIAL\",\n        \"numero\": \"893742934\",\n        \"descricao\": \"Telegram\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/cadastrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizarContato",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"idPessoa\": 2,\n        \"tipoContato\": \"RESIDENCIAL\",\n        \"numero\": \"8423632\",\n        \"descricao\": \"WeChat\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletarContato",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "encontrarPorTipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/findByTipo?tipo=residencial",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"findByTipo"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "residencial"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarPessoasContato",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/pessoa/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"pessoa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
