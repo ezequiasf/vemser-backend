@@ -1,8 +1,8 @@
 package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.LoginDTO;
-import com.dbc.pessoaapi.exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.security.TokenService;
+import com.dbc.pessoaapi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +22,7 @@ import javax.validation.Valid;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
+    private final UsuarioService usuarioService;
 
     //Senha: 123456
     @PostMapping
@@ -34,6 +35,11 @@ public class AuthController {
 
         Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         return tokenService.getToken(authenticate);
+    }
+
+    @PostMapping("/salvarUsuarioEncrip")
+    public LoginDTO salvarUsuario (@RequestBody @Valid LoginDTO loginDTO){
+        return usuarioService.salvarUsuario(loginDTO);
     }
 
 }
