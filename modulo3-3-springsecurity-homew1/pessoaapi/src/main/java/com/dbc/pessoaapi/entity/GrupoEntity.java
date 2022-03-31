@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ public class GrupoEntity implements Serializable {
     @ManyToMany(mappedBy = "grupos")
     private List<UsuarioEntity> usuarios;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "GRUPO_REGRA",

@@ -22,13 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //Método para configurar as chamadas a nossa api
     @Override
-    protected void configure (HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable().and().cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth").permitAll()
-                .antMatchers(HttpMethod.GET, "/pessoa/**", "/contato/**", "/endereco/**").hasRole("MARKETING")
+                .antMatchers(HttpMethod.GET, "/pessoa/**", "/contato/**", "/endereco/**").hasAnyRole("MARKETING", "USUARIO")
                 .antMatchers("/pessoa/**", "/contato/**", "/endereco/**").hasRole("USUARIO")
+                .antMatchers("/auth").permitAll()
                 .antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new TokenAuthenticationFilter(tokenService), UsernamePasswordAuthenticationFilter.class);
@@ -48,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(authenticationService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-    //TODO: Definir método
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {

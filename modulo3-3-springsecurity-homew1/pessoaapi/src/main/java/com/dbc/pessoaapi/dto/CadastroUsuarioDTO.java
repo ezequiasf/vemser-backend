@@ -20,5 +20,5 @@ public class CadastroUsuarioDTO {
     @NotNull
     @NotEmpty
     private String senha;
-    private Set<String> grupos;
+    private Set<String> gruposString;
 }
