@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.dto.CadastroUsuarioDTO;
 import com.dbc.pessoaapi.dto.LoginDTO;
 import com.dbc.pessoaapi.security.TokenService;
 import com.dbc.pessoaapi.service.UsuarioService;
@@ -24,7 +25,6 @@ public class AuthController {
     private final TokenService tokenService;
     private final UsuarioService usuarioService;
 
-    //Senha: 123456
     @PostMapping
     public String auth(@RequestBody @Valid LoginDTO loginDTO)  {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
@@ -38,8 +38,8 @@ public class AuthController {
     }
 
     @PostMapping("/salvarUsuarioEncrip")
-    public LoginDTO salvarUsuario (@RequestBody @Valid LoginDTO loginDTO){
-        return usuarioService.salvarUsuario(loginDTO);
+    public LoginDTO salvarUsuario (@RequestBody @Valid CadastroUsuarioDTO cadastro){
+        return usuarioService.salvarUsuario(cadastro);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.dbc.pessoaapi.security;
+	package com.dbc.pessoaapi.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

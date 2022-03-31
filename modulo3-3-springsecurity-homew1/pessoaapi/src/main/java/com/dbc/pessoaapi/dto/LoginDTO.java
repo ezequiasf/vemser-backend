@@ -10,7 +10,6 @@ public class LoginDTO {
     @NotNull
     @NotEmpty
     private String login;
-
     @NotNull
     @NotEmpty
     private String senha;

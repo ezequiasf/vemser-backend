@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.service;
 
+import com.dbc.pessoaapi.dto.CadastroUsuarioDTO;
 import com.dbc.pessoaapi.dto.LoginDTO;
 import com.dbc.pessoaapi.entity.UsuarioEntity;
 import com.dbc.pessoaapi.repository.UsuarioRepository;
@@ -16,10 +17,13 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final ObjectMapper objectMapper;
 
-    public LoginDTO salvarUsuario (LoginDTO dto){
+    public LoginDTO salvarUsuario (CadastroUsuarioDTO dto){
         UsuarioEntity usuario = objectMapper.convertValue(dto, UsuarioEntity.class);
         BCryptPasswordEncoder encriptador = new BCryptPasswordEncoder();
         usuario.setSenha(encriptador.encode(usuario.getSenha()));
+//        usuario.setGrupos(dto.getGrupos().stream().map(s-> {
+//            if (s.equalsIgnoreCase(""))
+//        }));
         UsuarioEntity usuarioEntity = usuarioRepository.save(usuario);
         return objectMapper.convertValue(usuarioEntity, LoginDTO.class);
     }
