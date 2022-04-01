@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.dto;
 
+import com.dbc.pessoaapi.entity.TipoGrupo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,5 @@ public class CadastroUsuarioDTO {
     @NotNull
     @NotEmpty
     private String senha;
-    private Set<String> gruposString;
+    private Set<TipoGrupo> gruposTipo;
 }
