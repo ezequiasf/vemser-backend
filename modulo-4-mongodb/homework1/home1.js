@@ -36,7 +36,7 @@ db.recipes.insertMany([
 		"preparetime" : 12,
 		"price" : 10.43,
 		"calories" : 3241.00,
-		"userid" : 3,
+		"userid" : ObjectId('624b5056598180f29b29f1db'),
 		"ingredients":["pão", "ovo"]
 	},
 	{
@@ -46,7 +46,7 @@ db.recipes.insertMany([
 		"preparetime" : 15,
 		"price" : 32.43,
 		"calories" : 321.00,
-		"userid" : 1,
+		"userid" : ObjectId('624b5056598180f29b29f1db'),
 		"ingredients":["camarão", "leite de côco"]
 	},
 	{
@@ -56,7 +56,7 @@ db.recipes.insertMany([
 		"preparetime" : 32,
 		"price" : 12.45,
 		"calories" : 213.00,
-		"userid" : 1,
+		"userid" : ObjectId('624b5056598180f29b29f1de'),
 		"ingredients":["ovo", "queijo"]
 	}
 ])
