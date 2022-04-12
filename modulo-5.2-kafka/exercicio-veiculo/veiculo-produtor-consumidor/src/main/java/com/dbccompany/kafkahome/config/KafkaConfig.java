@@ -18,20 +18,23 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
+    /*  *
+        *   Configurações para o consumer:
+        *       bootstrapAddress: Servidor
+        *       clientId: Id do consumidor
+        *       topic: tópico que irá consumir
+    */
     @Value(value = "${kafka.bootstrap-servers}")
     private String bootstrapAddress;
-    /*
-    Configurações para o consumer:
-    bootstrapAddress: Endereço do consumidor
-    clientId: kafka-consumer-api
-    topic: tópico que irá escutar
- */
+
     private static final String EARLIEST = "earliest";
+
     private static final String LATEST = "latest";
+
     @Value("${kafka.client-id}")
     private String clientId;
 
-    //Configuração: formato de mensagem, servidor
+    //Config: formato de mensagem & servidor
     @Bean
     public KafkaTemplate<String,String> configKafkaTemplate(){
         Map<String, Object> configProps = new HashMap<>();
@@ -42,9 +45,9 @@ public class KafkaConfig {
         return new KafkaTemplate<>(kafkaProducerFactory);
     }
 
-    //Configurações para o consumer
+    //Config para um consumidor em específico: kafka-veiculo-api
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> listenerContainerFactory(){
+    public ConcurrentKafkaListenerContainerFactory<String, String> consumerCarro(){
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
