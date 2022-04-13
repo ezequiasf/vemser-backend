@@ -21,11 +21,11 @@ public class MensagemController {
 
     private final KafkaService kafkaService;
     private final ObjectMapper objectMapper;
+    private final String USUARIO = "ezequias";
 
     @PostMapping("/envio")
-    public void envioMensagem(@RequestBody MensagemDTO msg, NomesChats chats) throws JsonProcessingException {
-        MensagemCompleta msgCompleta = objectMapper.convertValue(msg, MensagemCompleta.class);
-        msgCompleta.setDataCriacao(LocalDateTime.now());
+    public void envioMensagem(@RequestBody String msg, NomesChats chats) throws JsonProcessingException {
+        MensagemDTO msgCompleta = new MensagemDTO(USUARIO, msg, LocalDateTime.now());
 
         String payload = objectMapper.writeValueAsString(msgCompleta);
 
