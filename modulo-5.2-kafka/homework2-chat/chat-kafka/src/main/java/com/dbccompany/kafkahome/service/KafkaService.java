@@ -19,6 +19,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,6 +30,14 @@ public class KafkaService {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+
+    public void sendVariousMsg(String msg, List<NomesChats> chats){
+        for (NomesChats chat: chats) {
+            sendMessage(msg, chat);
+        }
+    }
+
 
     public void sendMessage(String msg, NomesChats chat) {
         Message<String> message = MessageBuilder.withPayload(msg)

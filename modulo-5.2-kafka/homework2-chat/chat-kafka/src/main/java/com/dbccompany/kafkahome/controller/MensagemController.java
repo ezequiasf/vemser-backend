@@ -7,12 +7,10 @@ import com.dbccompany.kafkahome.service.KafkaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,11 +22,11 @@ public class MensagemController {
     private final String USUARIO = "ezequias";
 
     @PostMapping("/envio")
-    public void envioMensagem(@RequestBody String msg, NomesChats chats) throws JsonProcessingException {
+    public void envioMensagem(@RequestBody String msg, @RequestParam List<NomesChats> chats) throws JsonProcessingException {
         MensagemDTO msgCompleta = new MensagemDTO(USUARIO, msg, LocalDateTime.now());
 
         String payload = objectMapper.writeValueAsString(msgCompleta);
 
-        kafkaService.sendMessage(payload, chats);
+        kafkaService.sendVariousMsg(payload, chats);
     }
 }
