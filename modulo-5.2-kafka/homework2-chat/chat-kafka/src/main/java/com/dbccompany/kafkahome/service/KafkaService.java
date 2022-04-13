@@ -55,7 +55,7 @@ public class KafkaService {
             topics = "${kafka.topic.particular}",
             groupId = "ezequias",
             containerFactory = "factoryConsumer",
-            clientIdPrefix = "private"
+            clientIdPrefix = "privado"
     )
     public void consumerParticular(@Payload String message) throws JsonProcessingException {
         MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
@@ -67,7 +67,7 @@ public class KafkaService {
             topics = "${kafka.topic.geral}",
             groupId = "ezequias",
             containerFactory = "factoryConsumer",
-            clientIdPrefix = "private"
+            clientIdPrefix = "geral"
     )
     public void consumerGeral(@Payload String message) throws JsonProcessingException {
         MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
