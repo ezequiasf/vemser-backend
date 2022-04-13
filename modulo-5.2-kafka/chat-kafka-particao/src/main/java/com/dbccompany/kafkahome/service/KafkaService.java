@@ -6,7 +6,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.SendResult;
@@ -21,28 +23,34 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class KafkaService {
 
+    @Value("${kafka.topic}")
+    private String topic;
+
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 
-    public void sendVariousMsg(String msg, List<NomesChats> chats){
-        for (NomesChats chat: chats) {
-            sendMessage(msg, chat);
+    public void sendVariousMsg(String msg, List<NomesChats> chats) {
+        List<Integer> partitions = chats.stream().map(chat -> chat.ordinal())
+                    .collect(Collectors.toList());
+        for (Integer part : partitions) {
+            sendMessage(msg, part);
         }
     }
 
-
-    public void sendMessage(String msg, NomesChats chat) {
+    public void sendMessage(String msg, Integer partition) {
         Message<String> message = MessageBuilder.withPayload(msg)
-                .setHeader(KafkaHeaders.TOPIC, chat.getNome())
+                .setHeader(KafkaHeaders.TOPIC, topic)
                 .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString())
+                .setHeader(KafkaHeaders.PARTITION_ID, partition)
                 .build();
 
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(message);
@@ -61,26 +69,24 @@ public class KafkaService {
     }
 
     @KafkaListener(
-            topics = "${kafka.topic.particular}",
             groupId = "ezequias",
             containerFactory = "factoryConsumer",
-            clientIdPrefix = "privado"
+            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"0", "2"})},
+            clientIdPrefix = "privadoGeral"
     )
-    public void consumerParticular(@Payload String message) throws JsonProcessingException {
+
+    public void consumerGeralParticular(
+                @Payload String message,
+                @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partitionId)
+                throws JsonProcessingException {
         MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
 
-        log.info(format.format(msgCompleta.getDataCriacao())+"["+msgCompleta.getUsuario()+"] (privada): "+msgCompleta.getMensagem());
+        if (partitionId == 0){
+            log.info(format.format(msgCompleta.getDataCriacao()) + "[" + msgCompleta.getUsuario() + "]: " + msgCompleta.getMensagem());
+        }else{
+            log.info(format.format(msgCompleta.getDataCriacao()) + "[" + msgCompleta.getUsuario() + "] (privada): " + msgCompleta.getMensagem());
+        }
+
     }
 
-    @KafkaListener(
-            topics = "${kafka.topic.geral}",
-            groupId = "ezequias",
-            containerFactory = "factoryConsumer",
-            clientIdPrefix = "geral"
-    )
-    public void consumerGeral(@Payload String message) throws JsonProcessingException {
-        MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
-
-        log.info(format.format(msgCompleta.getDataCriacao())+"["+msgCompleta.getUsuario()+"]: "+msgCompleta.getMensagem());
-    }
 }
