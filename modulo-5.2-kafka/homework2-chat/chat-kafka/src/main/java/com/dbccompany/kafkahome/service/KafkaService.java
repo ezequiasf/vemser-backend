@@ -1,8 +1,11 @@
 package com.dbccompany.kafkahome.service;
 
+import com.dbccompany.kafkahome.dto.MensagemCompleta;
+import com.dbccompany.kafkahome.model.NomesChats;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -23,13 +26,11 @@ import java.util.UUID;
 public class KafkaService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
-    @Value(value = "${kafka.topic}")
-    private String topic;
+    private final ObjectMapper objectMapper;
 
-    public void sendMessage(String msg) {
-        // >> Configurando: payload (conteúdo), chave randomica e ações para sucesso e falha.
+    public void sendMessage(String msg, NomesChats chat) {
         Message<String> message = MessageBuilder.withPayload(msg)
-                .setHeader(KafkaHeaders.TOPIC, topic)
+                .setHeader(KafkaHeaders.TOPIC, chat.getNome())
                 .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString())
                 .build();
 
@@ -48,14 +49,27 @@ public class KafkaService {
         });
     }
 
-    //Listener para escutar tópico (meu-primeiro-topico)
     @KafkaListener(
-            topics = "${kafka.topic}",
-            groupId = "group1",
-            containerFactory = "listenerContainerFactory")
-    public void consume(@Payload String message,
-                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,
-                        @Header(KafkaHeaders.OFFSET) Long offset) {
-        log.info("#### offset -> '{}' key -> '{}' -> Consumed Object message -> '{}'  ", offset, key, message);
+            topics = "${kafka.topic.particular}",
+            groupId = "ezequias",
+            containerFactory = "factoryConsumerPrivado",
+            clientIdPrefix = "private"
+    )
+    public void consumerParticular(@Payload String message) throws JsonProcessingException {
+        MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
+
+        log.info(msgCompleta.getDataCriacao()+"["+msgCompleta.getUsuario()+"] (privada): "+msgCompleta.getMensagem());
+    }
+
+    @KafkaListener(
+            topics = "${kafka.topic.geral}",
+            groupId = "ezequias",
+            containerFactory = "factoryConsumerGeral",
+            clientIdPrefix = "private"
+    )
+    public void consumerGeral(@Payload String message) throws JsonProcessingException {
+        MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
+
+        log.info(msgCompleta.getDataCriacao()+"["+msgCompleta.getUsuario()+"]: "+msgCompleta.getMensagem());
     }
 }

@@ -18,22 +18,25 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value(value = "${kafka.bootstrap-servers}")
-    private String bootstrapAddress;
     /*
     Configurações para o consumer:
     bootstrapAddress: Endereço do consumidor
     clientId: kafka-consumer-api
     topic: tópico que irá escutar
- */
+    */
     private static final String EARLIEST = "earliest";
+
     private static final String LATEST = "latest";
+
+    @Value(value = "${kafka.bootstrap-servers}")
+    private String bootstrapAddress;
+
     @Value("${kafka.client-id}")
     private String clientId;
 
     //Configuração: formato de mensagem, servidor
     @Bean
-    public KafkaTemplate<String,String> configKafkaTemplate(){
+    public KafkaTemplate<String, String> configKafkaTemplate() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -44,7 +47,30 @@ public class KafkaConfig {
 
     //Configurações para o consumer
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> listenerContainerFactory(){
+    public ConcurrentKafkaListenerContainerFactory<String, String> factoryConsumerPrivado() {
+        DefaultKafkaConsumerFactory<Object, Object> kafkaConsumerFactory =
+                new DefaultKafkaConsumerFactory<>(buildConfigConsumer(clientId));
+
+        ConcurrentKafkaListenerContainerFactory<String, String> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(kafkaConsumerFactory);
+
+        return factory;
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> factoryConsumerGeral() {
+        DefaultKafkaConsumerFactory<Object, Object> kafkaConsumerFactory =
+                new DefaultKafkaConsumerFactory<>(buildConfigConsumer(clientId));
+
+        ConcurrentKafkaListenerContainerFactory<String, String> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(kafkaConsumerFactory);
+
+        return factory;
+    }
+
+    private Map<String, Object> buildConfigConsumer(String clientId) {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
@@ -52,12 +78,6 @@ public class KafkaConfig {
         props.put(ConsumerConfig.CLIENT_ID_CONFIG, clientId);
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 10);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, LATEST);
-
-        DefaultKafkaConsumerFactory<Object, Object> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(props);
-
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(kafkaConsumerFactory);
-
-        return factory;
+        return props;
     }
 }
