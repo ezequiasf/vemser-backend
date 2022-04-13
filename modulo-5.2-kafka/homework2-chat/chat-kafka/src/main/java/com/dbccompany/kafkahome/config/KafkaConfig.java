@@ -47,7 +47,7 @@ public class KafkaConfig {
 
     //Configurações para o consumer
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> factoryConsumerPrivado() {
+    public ConcurrentKafkaListenerContainerFactory<String, String> factoryConsumer() {
         DefaultKafkaConsumerFactory<Object, Object> kafkaConsumerFactory =
                 new DefaultKafkaConsumerFactory<>(buildConfigConsumer(clientId));
 
@@ -58,17 +58,6 @@ public class KafkaConfig {
         return factory;
     }
 
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> factoryConsumerGeral() {
-        DefaultKafkaConsumerFactory<Object, Object> kafkaConsumerFactory =
-                new DefaultKafkaConsumerFactory<>(buildConfigConsumer(clientId));
-
-        ConcurrentKafkaListenerContainerFactory<String, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(kafkaConsumerFactory);
-
-        return factory;
-    }
 
     private Map<String, Object> buildConfigConsumer(String clientId) {
         Map<String, Object> props = new HashMap<>();

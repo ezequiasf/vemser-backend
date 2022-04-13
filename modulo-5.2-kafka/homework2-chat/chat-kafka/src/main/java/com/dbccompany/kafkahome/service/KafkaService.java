@@ -52,7 +52,7 @@ public class KafkaService {
     @KafkaListener(
             topics = "${kafka.topic.particular}",
             groupId = "ezequias",
-            containerFactory = "factoryConsumerPrivado",
+            containerFactory = "factoryConsumer",
             clientIdPrefix = "private"
     )
     public void consumerParticular(@Payload String message) throws JsonProcessingException {
@@ -64,7 +64,7 @@ public class KafkaService {
     @KafkaListener(
             topics = "${kafka.topic.geral}",
             groupId = "ezequias",
-            containerFactory = "factoryConsumerGeral",
+            containerFactory = "factoryConsumer",
             clientIdPrefix = "private"
     )
     public void consumerGeral(@Payload String message) throws JsonProcessingException {
