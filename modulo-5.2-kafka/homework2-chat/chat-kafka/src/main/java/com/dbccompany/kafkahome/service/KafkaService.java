@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
@@ -27,6 +28,7 @@ public class KafkaService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
+    private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     public void sendMessage(String msg, NomesChats chat) {
         Message<String> message = MessageBuilder.withPayload(msg)
@@ -58,7 +60,7 @@ public class KafkaService {
     public void consumerParticular(@Payload String message) throws JsonProcessingException {
         MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
 
-        log.info(msgCompleta.getDataCriacao()+"["+msgCompleta.getUsuario()+"] (privada): "+msgCompleta.getMensagem());
+        log.info(format.format(msgCompleta.getDataCriacao())+"["+msgCompleta.getUsuario()+"] (privada): "+msgCompleta.getMensagem());
     }
 
     @KafkaListener(
@@ -70,6 +72,6 @@ public class KafkaService {
     public void consumerGeral(@Payload String message) throws JsonProcessingException {
         MensagemCompleta msgCompleta = objectMapper.readValue(message, MensagemCompleta.class);
 
-        log.info(msgCompleta.getDataCriacao()+"["+msgCompleta.getUsuario()+"]: "+msgCompleta.getMensagem());
+        log.info(format.format(msgCompleta.getDataCriacao())+"["+msgCompleta.getUsuario()+"]: "+msgCompleta.getMensagem());
     }
 }
