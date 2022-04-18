@@ -74,7 +74,6 @@ public class KafkaService {
             topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"0", "2"})},
             clientIdPrefix = "privadoGeral"
     )
-
     public void consumerGeralParticular(
                 @Payload String message,
                 @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partitionId)

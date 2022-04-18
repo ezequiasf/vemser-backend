@@ -28,5 +28,7 @@ public class MensagemController {
         String payload = objectMapper.writeValueAsString(msgCompleta);
 
         kafkaService.sendVariousMsg(payload, chats);
+
+
     }
 }
